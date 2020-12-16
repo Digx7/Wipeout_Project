@@ -65,6 +65,17 @@ public class @WipeoutInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5f892f1e-ad58-4223-acad-9b3e210486fa"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b9d9c1cf-4339-479d-92a3-3a47d68e18e8"",
                     ""path"": ""<XInputController>/rightTrigger"",
                     ""interactions"": """",
@@ -110,6 +121,11 @@ public class @WipeoutInputs : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Game Pad"",
+            ""bindingGroup"": ""Game Pad"",
+            ""devices"": []
         }
     ]
 }");
@@ -228,6 +244,15 @@ public class @WipeoutInputs : IInputActionCollection, IDisposable
         {
             if (m_XBoxSchemeIndex == -1) m_XBoxSchemeIndex = asset.FindControlSchemeIndex("X Box");
             return asset.controlSchemes[m_XBoxSchemeIndex];
+        }
+    }
+    private int m_GamePadSchemeIndex = -1;
+    public InputControlScheme GamePadScheme
+    {
+        get
+        {
+            if (m_GamePadSchemeIndex == -1) m_GamePadSchemeIndex = asset.FindControlSchemeIndex("Game Pad");
+            return asset.controlSchemes[m_GamePadSchemeIndex];
         }
     }
     public interface IShipActions
