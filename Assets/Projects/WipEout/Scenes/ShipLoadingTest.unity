@@ -15344,7 +15344,6 @@ GameObject:
   m_Component:
   - component: {fileID: 915622636}
   - component: {fileID: 915622635}
-  - component: {fileID: 915622637}
   m_Layer: 0
   m_Name: Code
   m_TagString: Untagged
@@ -15381,48 +15380,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &915622637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915622634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9a9bd29b2cf4d4eaadfc98cb03d6ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    health: 104.1
-    speed: 195.9
-    acceleration: 195.9
-    turningSpeed: 40.9
-    airBrakes: 25.9
-    weapon: 0
-  shipStatsGenerator: {fileID: 0}
-  ShipBasePreFab: {fileID: 1348049116022194, guid: 9f620003d0b4e35429b6406ad6624557,
-    type: 3}
-  spawnedShip: {fileID: 0}
-  ShipSpawnLocation: {x: -82.6, y: 10.36, z: 87.2}
-  ShipSpawnRotation: {x: 0, y: 0.39656317, z: 0, w: 0.91800743}
-  settings: {fileID: 0}
-  ShipPrefabBase: {fileID: 5102487428712746940, guid: 7bfa4b0e53f4508479cea1a26c1a219d,
-    type: 3}
-  frame: {fileID: 6058736264445989041, guid: 2a7f9076a98d2264890389e5c9a2bfe2, type: 3}
-  controlSystem: {fileID: 1866909071504139930, guid: 8fd2b47d672d9df40812a15bafa482b7,
-    type: 3}
-  thruster: {fileID: 8846404231476605969, guid: 795442156904b6e46bdc39e50d05269b,
-    type: 3}
-  engine: {fileID: 7420300711450232555, guid: e26ee4ecc9f71654a89a6e04c273a75b, type: 3}
-  finL: {fileID: 4332227047211907590, guid: 606c8a7f02a3f8c4d9c3cf2e488f089c, type: 3}
-  finR: {fileID: 6704077968541168166, guid: 0044ce604b4627e4291041e551027e7f, type: 3}
-  mainColor: {r: 0, g: 0, b: 0, a: 0}
-  secondaryColor: {r: 0, g: 0, b: 0, a: 0}
-  trailColor: {r: 0, g: 0, b: 0, a: 0}
-  HUD: {fileID: 223872490691957260, guid: ac5f0699f5f0f494b8a6bb7c2d9ad54c, type: 3}
-  spawnedHUD: {fileID: 0}
-  loadWaitTime: 0.1
 --- !u!1001 &919706755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24473,7 +24430,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915622637}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadShipPreFab
         m_Mode: 1
         m_Arguments:
