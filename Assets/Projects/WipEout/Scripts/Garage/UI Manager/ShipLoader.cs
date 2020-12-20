@@ -8,6 +8,7 @@ public class ShipLoader : MonoBehaviour
 {
     public ShipStats stats;
     public ShipStatsGenerator shipStatsGenerator;
+    [SerializeField] private int trackNumber = 1;
     [Space]
     public GameObject ShipBasePreFab;
     public GameObject spawnedShip;
@@ -30,7 +31,7 @@ public class ShipLoader : MonoBehaviour
     public Canvas HUD;
     public Canvas spawnedHUD;
     [Space]
-    public float loadWaitTime = 1.0f;
+    public float loadWaitTime = 5.0f;
     [Space]
     private GameObject loadedPreFabBase;
 
@@ -38,14 +39,16 @@ public class ShipLoader : MonoBehaviour
 
     public void Awake ()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
     }
 
     public void LoadShip ()
     {
+      int sceneIndexToLoad = SceneManager.GetActiveScene().buildIndex + trackNumber;
+
         GetStats();
-        SceneManager.LoadScene("ShipLoadingTest");
-        StartCoroutine("loadShipPrefab");
+        newScene(sceneIndexToLoad);
+        //StartCoroutine(waitForSceneLoad(SceneManager.GetActiveScene().buildIndex + trackNumber));
     }
 
     public void GetStats ()
@@ -76,6 +79,37 @@ public class ShipLoader : MonoBehaviour
         settings.steerSpeed = stats.turningSpeed/10;
 
         UnityEngine.Debug.Log("Stats should be set");
+    }
+
+    public void newScene(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+
+        UnityEngine.Debug.Log("Loading next scene");
+
+        if (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        {
+            StartCoroutine("waitForSceneLoad", sceneNumber);
+        }
+    }
+
+    IEnumerator waitForSceneLoad(int sceneNumber)
+    {
+        while (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        {
+            yield return null;
+        }
+
+        // Do anything after proper scene has been loaded
+         if (SceneManager.GetActiveScene().buildIndex == sceneNumber)
+        {
+           StartCoroutine("loadShipPrefab");
+
+            UnityEngine.Debug.Log(SceneManager.GetActiveScene().buildIndex);
+            //GameObject spawner = GameObject.FindWithTag("scene" + sceneNumber);
+            //spawner.GetComponent<spawnPlayer>().spawn(team);
+        }
+        //currentScene = sceneNumber;
     }
 
     public void SpawnShip ()
