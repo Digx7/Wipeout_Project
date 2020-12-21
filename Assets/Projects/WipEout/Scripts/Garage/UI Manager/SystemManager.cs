@@ -38,6 +38,10 @@ public class SystemManager : MonoBehaviour
     ChangeG(SaveSystem.LoadGData());
   }
 
+  public void OnClickQuit(){
+    Application.Quit();
+  }
+
   // G -------------------------------------
   public void ChangeG (int change)
   {

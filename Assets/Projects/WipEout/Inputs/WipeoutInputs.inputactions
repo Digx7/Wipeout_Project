@@ -53,10 +53,21 @@
                 {
                     "name": "",
                     "id": "5f892f1e-ad58-4223-acad-9b3e210486fa",
-                    "path": "",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Game Pad",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "017932b9-8a6f-48e9-987e-60fa96946293",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
                     "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -74,6 +85,28 @@
                 },
                 {
                     "name": "",
+                    "id": "cecf7e45-89a8-4c0f-8c64-8b20b49b180a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Game Pad",
+                    "action": "Drift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2164fc87-942c-4b8e-8cb6-a880f3c5c3d1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
+                    "action": "Drift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "655720af-2b80-4bae-ba3e-60202acb0c1d",
                     "path": "<XInputController>/leftStick",
                     "interactions": "",
@@ -85,11 +118,99 @@
                 },
                 {
                     "name": "",
+                    "id": "a1f7e9c5-8f90-422d-a27e-753adf0a514e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Game Pad",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "3a582065-ce08-4654-b11e-ef7c1ca6a930",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "23d5e587-48d0-45d7-af18-786aa701a588",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "705dbefe-55e5-47aa-b323-551e4a35ddc9",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "629164c7-620e-4c77-87e8-c9e74b7392c7",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4db52c89-f17b-49e9-8469-73272e1db91c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
                     "id": "4e19c873-68b1-417a-914c-77e5455b5468",
                     "path": "<XInputController>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "X Box",
+                    "action": "Stunt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc583f4f-23c4-4bde-9989-34777a0c8762",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Game Pad",
+                    "action": "Stunt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e626633-5b4a-4759-acb0-88576b47d697",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard And Mouse",
                     "action": "Stunt",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -112,7 +233,29 @@
         {
             "name": "Game Pad",
             "bindingGroup": "Game Pad",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard And Mouse",
+            "bindingGroup": "Keyboard And Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }
