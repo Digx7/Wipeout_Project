@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
         checkpoints = new List<Checkpoint>();
     }
 
-	void Update()
+	  void Update()
     {
         SortPositions();
-	}
+	  }
 
     public float GetGravity()
     {
@@ -119,6 +119,10 @@ public class GameManager : MonoBehaviour
 
     // My Code ---------------
 
+    public GameObject GetShipsLastCheckpoint(int shipID){
+      return checkpoints[shipCheckpoints[shipID]].gameObject;
+    }
+
     public void ReportLap(int shipID)
     {
         if (GetLaps(shipID) > maxNumberofLaps) ShipFinishedRace(shipID);
@@ -140,10 +144,14 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(WaitTime);
 
-        SceneManager.LoadScene(GarageScene);
+        loadGarageScene();
 
         yield return null;
 
         Destroy(gameObject, 0.5f);
+    }
+
+    public void loadGarageScene(){
+      SceneManager.LoadScene(GarageScene);
     }
 }

@@ -96,7 +96,7 @@ public class ShipController : MonoBehaviour
         shipID = g_manager.RegisterShip(this);
         gravityScalar = g_manager.GetGravity();
 
-       
+
     }
 
     void Update()
@@ -442,6 +442,17 @@ public class ShipController : MonoBehaviour
         inputs = new WipeoutInputs();
 
         GetInputs();
+    }
+
+    public void RespawnOnTrack(){
+      StartCoroutine(_RespawnOnTrack());
+    }
+
+    private IEnumerator _RespawnOnTrack (){
+      rb.velocity = new Vector3(0,0,0);
+      transform.position = g_manager.GetShipsLastCheckpoint(shipID).transform.position;
+      transform.rotation = g_manager.GetShipsLastCheckpoint(shipID).transform.rotation;
+      yield return null;
     }
 
     // Input stuff

@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Projects/WipEout/Scenes/ShipTestScene.unity
-    guid: 539d297a7b510404d9ebd1681133e6f8
-  - enabled: 1
     path: Assets/Projects/WipEout/Scenes/ShipGarage.unity
     guid: c1601266ac0663c4fae1b15abc0ce2c8
   - enabled: 1
