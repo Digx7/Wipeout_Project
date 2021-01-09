@@ -5,14 +5,18 @@ using TMPro;
 
 public class overviewManager : MonoBehaviour
 {
-    public GameObject[] panels;
-    public overviewPanel[] panelCode;
-    public TextMeshProUGUI[] shipStatsUI;
-    public customLoadOut currentLoadOut;
-    public int selectedLoadOut = 0;
-    public AllCustomLoadouts allCustomLoadOuts;
+    /* Description ---
+     *    This script should manage the overview on the left hand side
+     */
+
+    [SerializeField] private GameObject[] panels;
+    [SerializeField] private overviewPanel[] panelCode;
+    [SerializeField] private TextMeshProUGUI[] shipStatsUI;
+    [SerializeField] private customLoadOut currentLoadOut;
+    [SerializeField] private int selectedLoadOut = 0;
+    [SerializeField] private AllCustomLoadouts allCustomLoadOuts;
     [Space]
-    public ShipStatsGenerator shipStatsGenerator;
+    [SerializeField] private ShipStatsGenerator shipStatsGenerator;
 
     public void Initialization ()
     {

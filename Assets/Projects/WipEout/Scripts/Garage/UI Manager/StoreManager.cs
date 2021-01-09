@@ -6,28 +6,32 @@ using TMPro;
 
 public class StoreManager : MonoBehaviour
 {
+    /* Description ---
+     * This script should manage the store
+     */
+
     [Header ("UI")]
-    public AllParts allParts;
-    public SystemManager systemManager;
-    public GSystem gSystem;
-    public GeneralUIManager generalUIManager;
+      public AllParts allParts;
+      public SystemManager systemManager;
+      public GSystem gSystem;
+      public GeneralUIManager generalUIManager;
     [Space]
     [Header("GameObjects")]
-    public GameObject MainPanel;
-    public GameObject partsPrefab;
-    public GameObject partsParent;
+      public GameObject MainPanel;
+      public GameObject partsPrefab;
+      public GameObject partsParent;
     [Space]
     [Header ("Parts Owned")]
-    public AllFramePartsOwned allFramePartsOwned;
-    public AllEnginePartsOwned allEnginePartsOwned;
-    public AllThrusterPartsOwned allThrusterPartsOwned;
-    public AllSteeringFinPartsOwned allSteeringFinPartsOwned;
-    public AllControlSystemPartsOwned allControlSystemPartsOwned;
-    public AllWeaponSystemPartsOwned allWeaponSystemPartsOwned;
+      public AllFramePartsOwned allFramePartsOwned;
+      public AllEnginePartsOwned allEnginePartsOwned;
+      public AllThrusterPartsOwned allThrusterPartsOwned;
+      public AllSteeringFinPartsOwned allSteeringFinPartsOwned;
+      public AllControlSystemPartsOwned allControlSystemPartsOwned;
+      public AllWeaponSystemPartsOwned allWeaponSystemPartsOwned;
     [Space]
     [Header ("Prefab Positions")]
-    public Vector3 partPosStartingPoint;
-    public Vector3 partPosOffset;
+      public Vector3 partPosStartingPoint;
+      public Vector3 partPosOffset;
 
     public void enableMainPanel ()
     {
@@ -70,7 +74,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, frame: g.GetComponent<partsPanel>().framePart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, frame: g.GetComponent<partsPanel>().framePart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -98,7 +102,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, engine: g.GetComponent<partsPanel>().enginePart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, engine: g.GetComponent<partsPanel>().enginePart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -126,7 +130,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, steeringfin: g.GetComponent<partsPanel>().steeringFinPart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, steeringfin: g.GetComponent<partsPanel>().steeringFinPart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -154,7 +158,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, thruster: g.GetComponent<partsPanel>().thrusterPart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, thruster: g.GetComponent<partsPanel>().thrusterPart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -182,7 +186,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, controlsystem: g.GetComponent<partsPanel>().controlSystemPart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, controlsystem: g.GetComponent<partsPanel>().controlSystemPart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -210,7 +214,7 @@ public class StoreManager : MonoBehaviour
 
           int x = i;
           g.GetComponent<partsPanel>().button = g.transform.GetChild(5).gameObject.GetComponent<Button>();
-          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.G, x, weaponsystem: g.GetComponent<partsPanel>().weaponSystemPart));
+          g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, weaponsystem: g.GetComponent<partsPanel>().weaponSystemPart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
     }
@@ -228,11 +232,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-frame.price);
         allParts.frameParts[i].isOwned = true;
         allFramePartsOwned.partsOwned.Add(frame);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
       else if (engine != null && g >= engine.price)
       {
@@ -244,11 +248,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-engine.price);
         allParts.engineParts[i].isOwned = true;
         allEnginePartsOwned.partsOwned.Add(engine);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
       else if (steeringfin != null && g >= steeringfin.price)
       {
@@ -260,11 +264,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-steeringfin.price);
         allParts.steeringFinParts[i].isOwned = true;
         allSteeringFinPartsOwned.partsOwned.Add(steeringfin);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
       else if (thruster != null && g >= thruster.price)
       {
@@ -276,11 +280,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-thruster.price);
         allParts.thrusterParts[i].isOwned = true;
         allThrusterPartsOwned.partsOwned.Add(thruster);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
       else if (controlsystem != null && g >= controlsystem.price)
       {
@@ -292,11 +296,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-controlsystem.price);
         allParts.controlSystemParts[i].isOwned = true;
         allControlSystemPartsOwned.partsOwned.Add(controlsystem);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
       else if (weaponsystem != null && g >= weaponsystem.price)
       {
@@ -308,11 +312,11 @@ public class StoreManager : MonoBehaviour
         gSystem.UpdateG(-weaponsystem.price);
         allParts.weaponSystemParts[i].isOwned = true;
         allWeaponSystemPartsOwned.partsOwned.Add(weaponsystem);
-        generalUIManager.UpdateGText(gSystem.G.ToString());
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
 
 
         systemManager.Save();
-        SaveSystem.SaveGData(gSystem.G);
+        SaveSystem.SaveGData(gSystem.getG());
       }
     }
 }

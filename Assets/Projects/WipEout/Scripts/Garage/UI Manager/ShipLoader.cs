@@ -6,34 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class ShipLoader : MonoBehaviour
 {
-    public ShipStats stats;
-    public ShipStatsGenerator shipStatsGenerator;
+    /* Description ---
+     *   This script should manage loading the ship into the race
+     */
+
+    [SerializeField] private ShipStats stats;
+    [SerializeField] private ShipStatsGenerator shipStatsGenerator;
     [SerializeField] private int trackNumber = 1;
     [Space]
-    public GameObject ShipBasePreFab;
-    public GameObject spawnedShip;
-    public Vector3 ShipSpawnLocation;
-    public Quaternion ShipSpawnRotation;
-    public ShipSettings settings;
+    [SerializeField] private GameObject ShipBasePreFab;
+    [SerializeField] private GameObject spawnedShip;
+    [SerializeField] private Vector3 ShipSpawnLocation;
+    [SerializeField] private Quaternion ShipSpawnRotation;
+    [SerializeField] private ShipSettings settings;
     [Space]
-    public GameObject ShipPrefabBase;
-    public GameObject frame;
-    public GameObject controlSystem;
-    public GameObject thruster;
-    public GameObject engine;
-    public GameObject finL;
-    public GameObject finR;
+    [SerializeField] private GameObject ShipPrefabBase;
+    [SerializeField] private GameObject frame;
+    [SerializeField] private GameObject controlSystem;
+    [SerializeField] private GameObject thruster;
+    [SerializeField] private GameObject engine;
+    [SerializeField] private GameObject finL;
+    [SerializeField] private GameObject finR;
     [Space]
-    public Color mainColor;
-    public Color secondaryColor;
-    public Color trailColor;
+    [SerializeField] private Color mainColor;
+    [SerializeField] private Color secondaryColor;
+    [SerializeField] private Color trailColor;
     [Space]
-    public Canvas HUD;
-    public Canvas spawnedHUD;
+    [SerializeField] private Canvas HUD;
+    [SerializeField] private Canvas spawnedHUD;
     [Space]
-    public float loadWaitTime = 5.0f;
+    [SerializeField] private float loadWaitTime = 5.0f;
     [Space]
-    private GameObject loadedPreFabBase;
+    [SerializeField] private GameObject loadedPreFabBase;
 
     private IEnumerator setUpPrefab;
 

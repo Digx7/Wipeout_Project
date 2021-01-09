@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class SystemManager : MonoBehaviour
 {
+  /* Description ---
+   * This script should manage the high end systems
+   */
+
   [Header("UI Manager")]
-  public overviewManager overviewManager;
-  public GeneralUIManager generalUIManager;
+    [SerializeField] private overviewManager overviewManager;
+    [SerializeField] private GeneralUIManager generalUIManager;
   [Header("Player Save Data")]
-  public AllCustomLoadouts allCustomLoadOuts;
-  [Space]
-  public AllFramePartsOwned allFramePartsOwned;
-  public AllEnginePartsOwned allEnginePartsOwned;
-  public AllSteeringFinPartsOwned allSteeringFinPartsOwned;
-  public AllThrusterPartsOwned allThrusterPartsOwned;
-  public AllControlSystemPartsOwned allControlSystemPartsOwned;
-  public AllWeaponSystemPartsOwned allWeaponSystemPartsOwned;
-  [Space]
-  public PlayerSaveData playerSaveData;
-  [Space]
+    [SerializeField] private AllCustomLoadouts allCustomLoadOuts;
+    [Space]
+    [SerializeField] private AllPartsOwned allPartsOwned;
+    [Space]
+    [SerializeField] private PlayerSaveData playerSaveData;
+    [Space]
   [Header("Parts Data")]
-  public AllParts allParts;
+    [SerializeField] private AllParts allParts;
   [Header("G-System")]
-  public GSystem gSystem;
+    [SerializeField] private GSystem gSystem;
 
   // Setup -----------------------------
 
@@ -46,8 +45,8 @@ public class SystemManager : MonoBehaviour
   public void ChangeG (int change)
   {
     gSystem.UpdateG(change);
-    generalUIManager.UpdateGText(gSystem.G.ToString());
-    SaveSystem.SaveGData(gSystem.G);
+    generalUIManager.UpdateGText(gSystem.getG().ToString());
+    SaveSystem.SaveGData(gSystem.getG());
   }
 
   // Save Data Managment ---------------
@@ -133,27 +132,27 @@ public class SystemManager : MonoBehaviour
     }
 
     // compiles parts lists
-    foreach (frame_part part in allFramePartsOwned.partsOwned)
+    foreach (frame_part part in allPartsOwned.framePartsOwned)
     {
       ownedFrameParts.Add(part.Name);
     }
-    foreach (engine_part part in allEnginePartsOwned.partsOwned)
+    foreach (engine_part part in allPartsOwned.enginePartsOwned)
     {
       ownedEngineParts.Add(part.Name);
     }
-    foreach (steeringfin_part part in allSteeringFinPartsOwned.partsOwned)
+    foreach (steeringfin_part part in allPartsOwned.steeringFinPartsOwned)
     {
       ownedSteeringFinParts.Add(part.Name);
     }
-    foreach (thruster_part part in allThrusterPartsOwned.partsOwned)
+    foreach (thruster_part part in allPartsOwned.thrusterPartsOwned)
     {
       ownedThrusterParts.Add(part.Name);
     }
-    foreach (controlsystem_part part in allControlSystemPartsOwned.partsOwned)
+    foreach (controlsystem_part part in allPartsOwned.controlSystemPartsOwned)
     {
       ownedControlSystemParts.Add(part.Name);
     }
-    foreach (weaponsystem_part part in allWeaponSystemPartsOwned.partsOwned)
+    foreach (weaponsystem_part part in allPartsOwned.weaponSystemPartsOwned)
     {
       ownedWeaponSystemParts.Add(part.Name);
     }
@@ -180,27 +179,27 @@ public class SystemManager : MonoBehaviour
 
     foreach (string name in data.ownedFrameParts)
     {
-      allFramePartsOwned.partsOwned.Add(findFramePart(name, true));
+      allPartsOwned.framePartsOwned.Add(findFramePart(name, true));
     }
     foreach (string name in data.ownedEngineParts)
     {
-      allEnginePartsOwned.partsOwned.Add(findEnginePart(name, true));
+      allPartsOwned.enginePartsOwned.Add(findEnginePart(name, true));
     }
     foreach (string name in data.ownedSteeringFinParts)
     {
-      allSteeringFinPartsOwned.partsOwned.Add(findSteeringFinPart(name, true));
+      allPartsOwned.steeringFinPartsOwned.Add(findSteeringFinPart(name, true));
     }
     foreach (string name in data.ownedThrusterParts)
     {
-      allThrusterPartsOwned.partsOwned.Add(findThrusterPart(name, true));
+      allPartsOwned.thrusterPartsOwned.Add(findThrusterPart(name, true));
     }
     foreach (string name in data.ownedControlSystemParts)
     {
-      allControlSystemPartsOwned.partsOwned.Add(findControlSystemPart(name, true));
+      allPartsOwned.controlSystemPartsOwned.Add(findControlSystemPart(name, true));
     }
     foreach (string name in data.ownedWeaponSystemParts)
     {
-      allWeaponSystemPartsOwned.partsOwned.Add(findWeaponSystemPart(name, true));
+      allPartsOwned.weaponSystemPartsOwned.Add(findWeaponSystemPart(name, true));
     }
   }
 
@@ -288,4 +287,5 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
+
 }

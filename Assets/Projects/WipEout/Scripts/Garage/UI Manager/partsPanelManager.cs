@@ -6,22 +6,21 @@ using UnityEngine.UI;
 
 public class partsPanelManager : MonoBehaviour
 {
-    public GameObject MainPanel;
-    public GameObject partsPrefab;
-    public GameObject partsParent;
+    /* Description ---
+     *    This script should manage the parts panel
+     */
+
+    [SerializeField] private GameObject MainPanel;
+    [SerializeField] private GameObject partsPrefab;
+    [SerializeField] private GameObject partsParent;
     [Space]
-    public AllFramePartsOwned allFramePartsOwned;
-    public AllEnginePartsOwned allEnginePartsOwned;
-    public AllThrusterPartsOwned allThrusterPartsOwned;
-    public AllSteeringFinPartsOwned allSteeringFinPartsOwned;
-    public AllControlSystemPartsOwned allControlSystemPartsOwned;
-    public AllWeaponSystemPartsOwned allWeaponSystemPartsOwned;
+    [SerializeField] private AllPartsOwned allPartsOwned;
     [Space]
-    public overviewManager overviewManager;
-    public SystemManager systemManager;
+    [SerializeField] private overviewManager overviewManager;
+    [SerializeField] private SystemManager systemManager;
     [Space]
-    public Vector3 partPosStartingPoint;
-    public Vector3 partPosOffset;
+    [SerializeField] private Vector3 partPosStartingPoint;
+    [SerializeField] private Vector3 partPosOffset;
 
     public void enableMainPanel ()
     {
@@ -36,7 +35,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allFramePartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.framePartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -44,9 +43,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().framePart = allFramePartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allFramePartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allFramePartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().framePart = allPartsOwned.framePartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.framePartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.framePartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
@@ -60,7 +59,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allEnginePartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.enginePartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -68,9 +67,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().enginePart = allEnginePartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allEnginePartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allEnginePartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().enginePart = allPartsOwned.enginePartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.enginePartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.enginePartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
@@ -84,7 +83,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allThrusterPartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.thrusterPartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -92,9 +91,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().thrusterPart = allThrusterPartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allThrusterPartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allThrusterPartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().thrusterPart = allPartsOwned.thrusterPartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.thrusterPartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.thrusterPartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
@@ -108,7 +107,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allSteeringFinPartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.steeringFinPartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -116,9 +115,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().steeringFinPart = allSteeringFinPartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allSteeringFinPartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allSteeringFinPartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().steeringFinPart = allPartsOwned.steeringFinPartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.steeringFinPartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.steeringFinPartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
@@ -132,7 +131,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allControlSystemPartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.controlSystemPartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -140,9 +139,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().controlSystemPart = allControlSystemPartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allControlSystemPartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allControlSystemPartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().controlSystemPart = allPartsOwned.controlSystemPartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.controlSystemPartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.controlSystemPartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
@@ -156,7 +155,7 @@ public class partsPanelManager : MonoBehaviour
     {
         onClickInventoryPart();
         enableMainPanel();
-        for (int i = 0; i < allWeaponSystemPartsOwned.partsOwned.Count; i++)
+        for (int i = 0; i < allPartsOwned.weaponSystemPartsOwned.Count; i++)
         {
             Vector3 Pos = partPosStartingPoint;
             Pos.x += partPosOffset.x * i;
@@ -164,9 +163,9 @@ public class partsPanelManager : MonoBehaviour
 
             g.transform.SetParent(partsParent.transform, false);
 
-            g.GetComponent<partsPanel>().weaponSystemPart = allWeaponSystemPartsOwned.partsOwned[i];
-            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allWeaponSystemPartsOwned.partsOwned[i].weight.ToString();
-            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allWeaponSystemPartsOwned.partsOwned[i].powerNeeded.ToString();
+            g.GetComponent<partsPanel>().weaponSystemPart = allPartsOwned.weaponSystemPartsOwned[i];
+            g.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.weaponSystemPartsOwned[i].weight.ToString();
+            g.transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().text = allPartsOwned.weaponSystemPartsOwned[i].powerNeeded.ToString();
 
             g.GetComponent<partsPanel>().overviewManager = overviewManager;
 
