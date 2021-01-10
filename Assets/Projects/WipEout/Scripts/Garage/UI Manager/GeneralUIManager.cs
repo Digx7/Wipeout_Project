@@ -27,9 +27,15 @@ public class GeneralUIManager : MonoBehaviour
   [SerializeField] private TextMeshProUGUI trackTypeText;
 
   private Image[] allImages;
+  private GameObject[] allPanels;
 
-  public void UpdateColors(){
-    foreach(Image image in allImages) image.color = panelColor;
+  // Editor Functions
+
+  public void UpdateColors(string input = "Panel"){
+    foreach(Image image in allImages) {
+      if(image.gameObject.name == input)
+      image.color = panelColor;
+    }
   }
 
   public void FindAllImages(){
@@ -39,7 +45,7 @@ public class GeneralUIManager : MonoBehaviour
   // G System Functions
   public void UpdateGText (string update)
   {
-    gText.text = "G: " + update;
+    gText.text = update;
   }
 
   // Track Selection Functions
@@ -69,6 +75,14 @@ public class GeneralUIManager : MonoBehaviour
 
   public void SetToShop (){
     UpdateUIState(3);
+  }
+
+  public void SetToSettings (){
+    UpdateUIState(4);
+  }
+
+  public void SetToTrackSelection (){
+    UpdateUIState(5);
   }
 
   public void OpenInventory (){
@@ -111,6 +125,28 @@ public class GeneralUIManager : MonoBehaviour
         UpdateLoadOutRendering(true);
         UpdateInventoryRendering(false);
         UpdateStatsRendering(true);
+        UpdateLaunchRendering(false);
+        UpdateTrackSelectionRendering(false);
+        break;
+      case 4 :
+        UpdateGRendering(false);
+        UpdateWindow1Rendering(false);
+        UpdateWindow2Rendering(false);
+        UpdateSettingsRendering(false);
+        UpdateLoadOutRendering(false);
+        UpdateInventoryRendering(false);
+        UpdateStatsRendering(false);
+        UpdateLaunchRendering(false);
+        UpdateTrackSelectionRendering(false);
+        break;
+      case 5 :
+        UpdateGRendering(false);
+        UpdateWindow1Rendering(false);
+        UpdateWindow2Rendering(false);
+        UpdateSettingsRendering(false);
+        UpdateLoadOutRendering(false);
+        UpdateInventoryRendering(false);
+        UpdateStatsRendering(false);
         UpdateLaunchRendering(false);
         UpdateTrackSelectionRendering(false);
         break;
