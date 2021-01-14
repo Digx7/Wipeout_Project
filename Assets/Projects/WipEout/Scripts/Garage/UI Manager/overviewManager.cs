@@ -9,23 +9,24 @@ public class overviewManager : MonoBehaviour
      *    This script should manage the overview on the left hand side
      */
 
-    [SerializeField] private GameObject[] panels;
+    /*[SerializeField] private GameObject[] panels;
     [SerializeField] private overviewPanel[] panelCode;
-    [SerializeField] private TextMeshProUGUI[] shipStatsUI;
+    [SerializeField] private TextMeshProUGUI[] shipStatsUI;*/
     [SerializeField] private customLoadOut currentLoadOut;
     [SerializeField] private int selectedLoadOut = 0;
     [SerializeField] private AllCustomLoadouts allCustomLoadOuts;
     [Space]
     [SerializeField] private ShipStatsGenerator shipStatsGenerator;
+    [SerializeField] private GeneralUIManager GeneralUIManager;
 
     public void Initialization ()
     {
         ReloadLoadOut();
-        SetUpPanelCode();
+        //SetUpPanelCode();
         RefreashAllPanels();
     }
 
-    public void SetUpPanelCode ()
+    /*public void SetUpPanelCode ()
     {
         for (int i = 0; i < panels.Length; i++)
         {
@@ -34,7 +35,7 @@ public class overviewManager : MonoBehaviour
             panelCode[i].power = panels[i].transform.GetChild(3).gameObject.GetComponent<TextMeshProUGUI>();
             panelCode[i].type = panels[i].transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>();
         }
-    }
+    }*/
 
     public void ReloadLoadOut ()
     {
@@ -50,16 +51,26 @@ public class overviewManager : MonoBehaviour
 
     public void RefreashAllPanels ()
     {
-        RefreashFramePanel();
+        /*RefreashFramePanel();
         RefreashEnginePanel();
         RefreashSteeringFinPanel();
         RefreashThrusterPanel();
         RefreashControlSystemPanel();
-        RefreashWeaponSystemPanel();
+        RefreashWeaponSystemPanel();*/
+
+        GeneralUIManager.UpdatePart (0, currentLoadOut.framePart.Name, currentLoadOut.framePart.weight.ToString(), currentLoadOut.framePart.powerNeeded.ToString());
+        GeneralUIManager.UpdatePart (1, currentLoadOut.enginePart.Name, currentLoadOut.enginePart.weight.ToString(), currentLoadOut.enginePart.powerNeeded.ToString());
+        GeneralUIManager.UpdatePart (2, currentLoadOut.thrusterPart.Name, currentLoadOut.thrusterPart.weight.ToString(), currentLoadOut.thrusterPart.powerNeeded.ToString());
+        GeneralUIManager.UpdatePart (3, currentLoadOut.steeringFinPart.Name, currentLoadOut.steeringFinPart.weight.ToString(), currentLoadOut.steeringFinPart.powerNeeded.ToString());
+        GeneralUIManager.UpdatePart (4, currentLoadOut.controlSystemPart.Name, currentLoadOut.controlSystemPart.weight.ToString(), currentLoadOut.controlSystemPart.powerNeeded.ToString());
+        GeneralUIManager.UpdatePart (5, currentLoadOut.weaponSystemPart.Name, currentLoadOut.weaponSystemPart.weight.ToString(), currentLoadOut.weaponSystemPart.powerNeeded.ToString());
+
+        shipStatsGenerator.GenerateStats(currentLoadOut);
+        RefreashAllStatsUI();
     }
     public void RefreashAllStatsUI ()
     {
-        shipStatsUI[0].text = shipStatsGenerator.healthString + shipStatsGenerator.health;
+        /*shipStatsUI[0].text = shipStatsGenerator.healthString + shipStatsGenerator.health;
         shipStatsUI[1].text = shipStatsGenerator.speedString + shipStatsGenerator.speed;
         shipStatsUI[2].text = shipStatsGenerator.accelerationString + shipStatsGenerator.acceleration;
         shipStatsUI[3].text = shipStatsGenerator.turningSpeedString + shipStatsGenerator.turningSpeed;
@@ -67,10 +78,17 @@ public class overviewManager : MonoBehaviour
         shipStatsUI[5].text = shipStatsGenerator.weaponString + shipStatsGenerator.weapon;
 
         shipStatsUI[6].text = "" + shipStatsGenerator.weight;
-        shipStatsUI[7].text = "" + shipStatsGenerator.powerUsed + "/" + shipStatsGenerator.maxPower;
+        shipStatsUI[7].text = "" + shipStatsGenerator.powerUsed + "/" + shipStatsGenerator.maxPower;*/
+
+        GeneralUIManager.UpdateStat(0, "Health", shipStatsGenerator.getHealth().ToString());
+        GeneralUIManager.UpdateStat(1, "Speed", shipStatsGenerator.getSpeed().ToString());
+        GeneralUIManager.UpdateStat(2, "Start Up", shipStatsGenerator.getAcceleration().ToString());
+        GeneralUIManager.UpdateStat(3, "Handling", shipStatsGenerator.getTurningSpeed().ToString());
+        GeneralUIManager.UpdateStat(4, "Airbrakes", shipStatsGenerator.getAirBrakes().ToString());
+        GeneralUIManager.UpdateStat(5, "Weapon", shipStatsGenerator.getWeapon().ToString());
     }
 
-    public void RefreashFramePanel ()
+    /*public void RefreashFramePanel ()
     {
         panelCode[0].Name.text = currentLoadOut.framePart.Name;
         panelCode[0].weight.text = currentLoadOut.framePart.weight.ToString();
@@ -160,5 +178,5 @@ public class overviewManager : MonoBehaviour
     {
         currentLoadOut.weaponSystemPart = weaponSystemPart;
         RefreashWeaponSystemPanel();
-    }
+    }*/
 }

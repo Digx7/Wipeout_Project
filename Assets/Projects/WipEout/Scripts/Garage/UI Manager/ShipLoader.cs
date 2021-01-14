@@ -57,12 +57,12 @@ public class ShipLoader : MonoBehaviour
 
     public void GetStats ()
     {
-        stats.health = shipStatsGenerator.health;
-        stats.speed = shipStatsGenerator.speed;
-        stats.acceleration = shipStatsGenerator.acceleration;
-        stats.turningSpeed = shipStatsGenerator.turningSpeed;
-        stats.airBrakes = shipStatsGenerator.airBrakes;
-        stats.weapon = shipStatsGenerator.weapon;
+        stats.health = shipStatsGenerator.getHealth();
+        stats.speed = shipStatsGenerator.getSpeed();
+        stats.acceleration = shipStatsGenerator.getAcceleration();
+        stats.turningSpeed = shipStatsGenerator.getTurningSpeed();
+        stats.airBrakes = shipStatsGenerator.getAirBrakes();
+        stats.weapon = shipStatsGenerator.getWeapon();
 
         // Gets ship model pieces
         frame = shipStatsGenerator.frame;

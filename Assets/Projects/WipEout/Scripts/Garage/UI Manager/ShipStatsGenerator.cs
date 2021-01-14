@@ -6,23 +6,23 @@ using UnityEngine;
 public class ShipStatsGenerator : MonoBehaviour
 {
     [Header ("Stats")]
-    public float health;
-    public float speed;
-    public float acceleration;
-    public float turningSpeed;
-    public float airBrakes;
-    public float weapon;
-    public float weight = 0;
-    public float maxPower;
-    public float powerUsed;
+    [SerializeField] private float health;
+    [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
+    [SerializeField] private float turningSpeed;
+    [SerializeField] private float airBrakes;
+    [SerializeField] private float weapon;
+    [SerializeField] private float weight = 0;
+    [SerializeField] private float maxPower;
+    [SerializeField] private float powerUsed;
     [Space]
-    [Header("UI String addons")]
+    /*[Header("UI String addons")]
     public string healthString = "Health : ";
     public string speedString = "Speed : ";
     public string accelerationString = "Acceleration : ";
     public string turningSpeedString = "Steering : ";
     public string airBrakesString = "Air Brakes : ";
-    public string weaponString = "Weapon Power : ";
+    public string weaponString = "Weapon Power : ";*/
     [Space]
     [Header("Part Models")]
     public GameObject modelHolder;
@@ -92,6 +92,41 @@ public class ShipStatsGenerator : MonoBehaviour
         StartCoroutine("loadShipModel");
     }
 
+    // get fucntions
+
+    public float getHealth(){
+      return health;
+    }
+
+    public float getSpeed(){
+      return speed;
+    }
+
+    public float getAcceleration(){
+      return acceleration;
+    }
+
+    public float getTurningSpeed(){
+      return turningSpeed;
+    }
+
+    public float getAirBrakes(){
+      return airBrakes;
+    }
+
+    public float getWeapon(){
+      return weapon;
+    }
+
+    public float getMaxPower(){
+      return maxPower;
+    }
+
+    public float getPowerUsed(){
+      return powerUsed;
+    }
+
+    // This all should be moved to a seperate script
     public Transform FindParent(GameObject part, string Name)
     {
         foreach (Transform child in part.GetComponentsInChildren<Transform>())

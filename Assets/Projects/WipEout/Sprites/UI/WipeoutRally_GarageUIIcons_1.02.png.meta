@@ -1,0 +1,588 @@
+fileFormatVersion: 2
+guid: 89461a2732f543340a9be4c545ccfefd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9183944342707351659
+    second: Currency_Icon_1.02
+  - first:
+      213: 7567756894072334593
+    second: Settings_Icon_1.02
+  - first:
+      213: -6433342990652311535
+    second: LauchWindow_Icon_1.02
+  - first:
+      213: 518875273528792592
+    second: ShipGarage_Icon_1.02
+  - first:
+      213: 5255764549517551191
+    second: ShipStore_Icon_1.02
+  - first:
+      213: 2035636192899344216
+    second: Colors_Icon_1.02
+  - first:
+      213: -2942220628012107729
+    second: Parts_Icon_1.02
+  - first:
+      213: -1271806016332975661
+    second: PartsTemp_Icon_1.02
+  - first:
+      213: 7142536484593374753
+    second: Frame_Icon_1.02
+  - first:
+      213: 1518393493282311081
+    second: Fins_Icon_1.02
+  - first:
+      213: 4616671177874280317
+    second: Control_Icon_1.02
+  - first:
+      213: 5254464492361307382
+    second: Dot_Icon_1.02
+  - first:
+      213: -5727851902012889970
+    second: VerticalLine_Icon_1.02
+  - first:
+      213: 6082770324812099368
+    second: HorrizontalLine_Icon_1.02
+  - first:
+      213: 1553265904804406084
+    second: BoxFull_Icon_1.02
+  - first:
+      213: -6992532150367019892
+    second: BoxOpen_Icon_1.02
+  - first:
+      213: 1282138133399335983
+    second: BoxCorner_Icon_1.02
+  - first:
+      213: 1749127517877239260
+    second: Engine_Icon_1.02
+  - first:
+      213: 9220676694531928102
+    second: Thruster_Icon_1.02
+  - first:
+      213: 1260101193849782689
+    second: Weapon_Icon_1.02
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Currency_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60b70898bce37f70800000000000000
+      internalID: 9183944342707351659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Settings_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109e1b9acc2160960800000000000000
+      internalID: 7567756894072334593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LauchWindow_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1187be3a2ac28b6a0800000000000000
+      internalID: -6433342990652311535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShipGarage_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 016da69ef4a633700800000000000000
+      internalID: 518875273528792592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShipStore_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756a515f20a30f840800000000000000
+      internalID: 5255764549517551191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colors_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857a1b90558004c10800000000000000
+      internalID: 2035636192899344216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Parts_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28f2886de12b27d0800000000000000
+      internalID: -2942220628012107729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartsTemp_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1b44d9a23a95ee0800000000000000
+      internalID: -1271806016332975661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126947707136f1360800000000000000
+      internalID: 7142536484593374753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fins_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab4b5c56da621510800000000000000
+      internalID: 1518393493282311081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 930
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7f0bf1e9f5b11040800000000000000
+      internalID: 4616671177874280317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dot_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f45910dd9b9be840800000000000000
+      internalID: 5254464492361307382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VerticalLine_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84e976ea059280b0800000000000000
+      internalID: -5727851902012889970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HorrizontalLine_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f66bce1675a6450800000000000000
+      internalID: 6082770324812099368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxFull_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443a7916c1f4e8510800000000000000
+      internalID: 1553265904804406084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxOpen_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c10e8ae0985fe90800000000000000
+      internalID: -6992532150367019892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxCorner_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24ff3ad6d11bc110800000000000000
+      internalID: 1282138133399335983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Engine_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cddfee1d536264810800000000000000
+      internalID: 1749127517877239260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thruster_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6207c46b99c66ff70800000000000000
+      internalID: 9220676694531928102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapon_Icon_1.02
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 780
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a146780c57cc7110800000000000000
+      internalID: 1260101193849782689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: fbb333d6fa7a1c04188a09ec74e3ce38
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

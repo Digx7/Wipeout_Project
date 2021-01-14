@@ -10,8 +10,8 @@ public class partsPanelManager : MonoBehaviour
      *    This script should manage the parts panel
      */
 
-    [SerializeField] private GameObject MainPanel;
-    [SerializeField] private GameObject partsPrefab;
+    //[SerializeField] private GameObject MainPanel;
+    /*[SerializeField] private GameObject partsPrefab;
     [SerializeField] private GameObject partsParent;
     [Space]
     [SerializeField] private AllPartsOwned allPartsOwned;
@@ -19,17 +19,15 @@ public class partsPanelManager : MonoBehaviour
     [SerializeField] private overviewManager overviewManager;
     [SerializeField] private SystemManager systemManager;
     [Space]
-    [SerializeField] private Vector3 partPosStartingPoint;
-    [SerializeField] private Vector3 partPosOffset;
+    //[SerializeField] private Vector3 partPosStartingPoint;
+    //[SerializeField] private Vector3 partPosOffset;
+    private Vector3 Pos;
 
-    public void enableMainPanel ()
-    {
-        MainPanel.SetActive(true);
+    public void Awake(){
+      Pos = new Vector3(0,0,0);
     }
-    public void disableMainPanel ()
-    {
-        MainPanel.SetActive(false);
-    }
+
+
 
     public void onClickEquipedFramePart ()
     {
@@ -37,8 +35,6 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.framePartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
             GameObject g = Instantiate( partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -61,8 +57,6 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.enginePartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
             GameObject g = Instantiate(partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -85,8 +79,7 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.thrusterPartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
+
             GameObject g = Instantiate(partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -109,8 +102,7 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.steeringFinPartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
+
             GameObject g = Instantiate(partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -133,8 +125,7 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.controlSystemPartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
+
             GameObject g = Instantiate(partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -157,8 +148,7 @@ public class partsPanelManager : MonoBehaviour
         enableMainPanel();
         for (int i = 0; i < allPartsOwned.weaponSystemPartsOwned.Count; i++)
         {
-            Vector3 Pos = partPosStartingPoint;
-            Pos.x += partPosOffset.x * i;
+
             GameObject g = Instantiate(partsPrefab, Pos, Quaternion.identity);
 
             g.transform.SetParent(partsParent.transform, false);
@@ -183,5 +173,5 @@ public class partsPanelManager : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         disableMainPanel();
-    }
+    }*/
 }

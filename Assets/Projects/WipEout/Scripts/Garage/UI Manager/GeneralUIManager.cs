@@ -13,10 +13,18 @@ public class GeneralUIManager : MonoBehaviour
                                       windowTabs_2,
                                       settingsPannel,
                                       loadOutPannel,
+                                      loadOut_PartsPannel,
+                                      loadOut_ColorsPannel,
                                       inventoryPannel,
                                       statsReadOutPannel,
                                       launchPannel,
                                       trackSelectionPannel;
+
+  // loadOutPannel Parts
+  [Space]
+  [SerializeField] private List<GameObject> loadOutPannelParts,
+                                            statsPannelText,
+                                            inventory_items;
 
   // G System UI
   [Space]
@@ -25,6 +33,9 @@ public class GeneralUIManager : MonoBehaviour
   // Track Selection UI
   [SerializeField] private TextMeshProUGUI trackNameText;
   [SerializeField] private TextMeshProUGUI trackTypeText;
+
+  // References
+  [SerializeField] private AllPartsOwned allPartsOwned;
 
   private Image[] allImages;
   private GameObject[] allPanels;
@@ -46,6 +57,84 @@ public class GeneralUIManager : MonoBehaviour
   public void UpdateGText (string update)
   {
     gText.text = update;
+  }
+
+  // loadOutPannel and StatsPannel Functions
+
+  public void UpdatePart (int partIndex, string partName, string partWeight, string partPower){
+    UpdatePartName(partIndex, partName);
+    UpdatePartWeight(partIndex, partWeight);
+    UpdatePartPower(partIndex, partPower);
+
+    //Debug.Log("A UI Part pannel was updated to the following : " + partName + " " + partWeight + " " + partPower);
+  }
+
+  public void UpdateStat (int index, string statName, string statValue){
+    UpdateStatName(index, statName);
+    UpdateStatValue(index, statValue);
+  }
+
+  private void UpdatePartName (int index, string name){
+    UpdatePartString(index, "Part Name", name);
+  }
+
+  private void UpdatePartWeight (int index, string value){
+    UpdatePartString(index, "Part Weight", value);
+  }
+
+  private void UpdatePartPower (int index, string value){
+    UpdatePartString(index, "Part Power", value);
+  }
+
+  private void UpdateStatName (int index, string input){
+    UpdateStatString(index, "Stat Name", input);
+  }
+
+  private void UpdateStatValue (int index, string value){
+    UpdateStatString (index, "Stat Value", value);
+  }
+
+  private void UpdatePartString (int index, string partName, string newText){
+    UpdateUIString (loadOutPannelParts, index, partName, newText);
+  }
+
+  private void UpdateStatString (int index, string statName, string newText){
+    UpdateUIString (statsPannelText, index, statName, newText);
+  }
+
+  private void UpdateUIString (List<GameObject> g, int index, string partName, string newText){
+    g[index].transform.Find(partName).GetComponent<TextMeshProUGUI>().text = newText;
+  }
+
+  // Inventory Parts Functions
+
+  public void loadInventory (string typeToLoad){
+    switch (typeToLoad){
+      case "Owned_Frame":
+        break;
+    }
+  }
+
+  private void ClearInventory (){
+    foreach(GameObject item in inventory_items) Destroy(item);
+    inventory_items.Clear();
+  }
+
+  private void UpdateItem (int index, string weight, string power){
+    UpdateItemPower(index, power);
+    UpdateItemWeight(index, weight);
+  }
+
+  private void UpdateItemPower (int index, string value){
+    UpdateItemString(index, "Item Power", value);
+  }
+
+  private void UpdateItemWeight (int index, string value){
+    UpdateItemString(index, "Item Weight", value);
+  }
+
+  private void UpdateItemString (int index, string objectName, string value){
+    UpdateUIString(inventory_items, index, objectName, value);
   }
 
   // Track Selection Functions
@@ -91,6 +180,16 @@ public class GeneralUIManager : MonoBehaviour
 
   public void CloseInventory (){
     UpdateInventoryRendering(false);
+  }
+
+  public void OpenParts (){
+    UpdateLoadOutPartsRendering(true);
+    UpdateLoadOutColorsRendering(false);
+  }
+
+  public void OpenColors (){
+    UpdateLoadOutPartsRendering(false);
+    UpdateLoadOutColorsRendering(true);
   }
 
   private void UpdateUIState(int input){
@@ -189,5 +288,12 @@ public class GeneralUIManager : MonoBehaviour
 
   private void UpdateTrackSelectionRendering(bool input){
     trackSelectionPannel.SetActive(input);
+  }
+
+  private void UpdateLoadOutPartsRendering(bool input){
+    loadOut_PartsPannel.SetActive(input);
+  }
+  private void UpdateLoadOutColorsRendering(bool input){
+    loadOut_ColorsPannel.SetActive(input);
   }
 }
