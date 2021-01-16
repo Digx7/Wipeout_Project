@@ -147,36 +147,36 @@ public class overviewManager : MonoBehaviour
 
         shipStatsGenerator.GenerateStats(currentLoadOut);
         RefreashAllStatsUI();
-    }
+    }*/
 
     public void NewFramePart (frame_part framePart)
     {
         currentLoadOut.framePart = framePart;
-        RefreashFramePanel();
+        RefreashAllPanels();
     }
     public void NewEnginePart(engine_part enginePart)
     {
         currentLoadOut.enginePart = enginePart;
-        RefreashEnginePanel();
+        RefreashAllPanels();
     }
     public void NewThrusterPart(thruster_part thrusterPart)
     {
         currentLoadOut.thrusterPart = thrusterPart;
-        RefreashThrusterPanel();
+        RefreashAllPanels();
     }
     public void NewSteeringFinPart(steeringfin_part steeringFinPart)
     {
         currentLoadOut.steeringFinPart = steeringFinPart;
-        RefreashSteeringFinPanel();
+        RefreashAllPanels();
     }
     public void NewControlSystemPart(controlsystem_part controlSystemPart)
     {
         currentLoadOut.controlSystemPart = controlSystemPart;
-        RefreashControlSystemPanel();
+        RefreashAllPanels();
     }
     public void NewWeaponSystemPart(weaponsystem_part weaponSystemPart)
     {
         currentLoadOut.weaponSystemPart = weaponSystemPart;
-        RefreashWeaponSystemPanel();
-    }*/
+        RefreashAllPanels();
+    }
 }

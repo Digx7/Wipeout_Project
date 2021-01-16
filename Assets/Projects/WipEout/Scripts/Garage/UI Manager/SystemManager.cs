@@ -18,6 +18,12 @@ public class SystemManager : MonoBehaviour
     [Space]
     [SerializeField] private PlayerSaveData playerSaveData;
     [Space]
+    [SerializeField] private List<string> startingFrames;
+    [SerializeField] private List<string> startingEngines;
+    [SerializeField] private List<string> startingThrusters;
+    [SerializeField] private List<string> startingSteeringFins;
+    [SerializeField] private List<string> startingControlSystems;
+    [SerializeField] private List<string> startingWeaponSystems;
   [Header("Parts Data")]
     [SerializeField] private AllParts allParts;
   [Header("G-System")]
@@ -88,19 +94,29 @@ public class SystemManager : MonoBehaviour
     List<string> ownedControlSystemParts = new List<string>();
     List<string> ownedWeaponSystemParts = new List<string>();
 
-    ownedFrameParts.Add(findFramePart("E-2").Name);
+    foreach(string item in startingFrames) ownedFrameParts.Add(findFramePart(item).Name);
+    foreach(string item in startingEngines) ownedEngineParts.Add(findEnginePart(item).Name);
+    foreach(string item in startingThrusters) ownedThrusterParts.Add(findThrusterPart(item).Name);
+    foreach(string item in startingSteeringFins) ownedSteeringFinParts.Add(findSteeringFinPart(item).Name);
+    foreach(string item in startingControlSystems) ownedControlSystemParts.Add(findControlSystemPart(item).Name);
+    foreach(string item in startingWeaponSystems) ownedWeaponSystemParts.Add(findWeaponSystemPart(item).Name);
+
+    /*ownedFrameParts.Add(findFramePart("E-2").Name);
+    ownedFrameParts.Add(findFramePart("Fusion").Name);
     ownedEngineParts.Add(findEnginePart("E-2").Name);
     ownedSteeringFinParts.Add(findSteeringFinPart("E-2").Name);
     ownedThrusterParts.Add(findThrusterPart("E-2").Name);
     ownedControlSystemParts.Add(findControlSystemPart("E-2").Name);
-    ownedWeaponSystemParts.Add(findWeaponSystemPart("E-2").Name);
+    ownedWeaponSystemParts.Add(findWeaponSystemPart("E-2").Name);*/
 
-    loadOuts.Add(findFramePart("E-2").Name);
-    loadOuts.Add(findEnginePart("E-2").Name);
-    loadOuts.Add(findThrusterPart("E-2").Name);
-    loadOuts.Add(findSteeringFinPart("E-2").Name);
-    loadOuts.Add(findControlSystemPart("E-2").Name);
-    loadOuts.Add(findWeaponSystemPart("E-2").Name);
+    loadOuts.Add(findFramePart(startingFrames[0]).Name);
+    loadOuts.Add(findEnginePart(startingEngines[0]).Name);
+    loadOuts.Add(findThrusterPart(startingThrusters[0]).Name);
+    loadOuts.Add(findSteeringFinPart(startingSteeringFins[0]).Name);
+    loadOuts.Add(findControlSystemPart(startingControlSystems[0]).Name);
+    loadOuts.Add(findWeaponSystemPart(startingWeaponSystems[0]).Name);
+
+
 
     PlayerSaveData saveData = new PlayerSaveData(loadOuts,ownedFrameParts,ownedEngineParts,
         ownedSteeringFinParts,ownedThrusterParts,ownedControlSystemParts,
