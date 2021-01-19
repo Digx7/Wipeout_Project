@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class StoreManager : MonoBehaviour
@@ -11,10 +12,11 @@ public class StoreManager : MonoBehaviour
      */
 
     [Header ("UI")]
-      public AllParts allParts;
-      public SystemManager systemManager;
-      public GSystem gSystem;
-      public GeneralUIManager generalUIManager;
+      [SerializeField] private AllParts allParts;
+      [SerializeField] private AllPartsOwned allPartsOwned;
+      [SerializeField] private SystemManager systemManager;
+      [SerializeField] private GSystem gSystem;
+      [SerializeField] private GeneralUIManager generalUIManager;
     [Space]
     [Header("GameObjects")]
       public GameObject MainPanel;
@@ -33,7 +35,7 @@ public class StoreManager : MonoBehaviour
       public Vector3 partPosStartingPoint;
       public Vector3 partPosOffset;
 
-    public void enableMainPanel ()
+    /*public void enableMainPanel ()
     {
         MainPanel.SetActive(true);
     }
@@ -217,106 +219,70 @@ public class StoreManager : MonoBehaviour
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => buyPart (gSystem.getG(), x, weaponsystem: g.GetComponent<partsPanel>().weaponSystemPart));
           g.GetComponent<partsPanel>().button.onClick.AddListener(() => resetPanel());
       }
+    }*/
+
+    public void buyPart (part part)
+    {
+
+      //Debug.Log("Player is trying to buy a part");
+      //Debug.Log("Part Index is " + index);
+
+      if (gSystem.getG() >= part.price)
+      {
+        Debug.Log ("You bought the part");
+
+        // Need to subtract funds and add to owned lists
+
+        gSystem.UpdateG(-part.price);
+        UpdatePartStatus(part);
+        generalUIManager.UpdateGText(gSystem.getG().ToString());
+
+
+        systemManager.Save();
+        SaveSystem.SaveGData(gSystem.getG());
+
+        systemManager.RefreashPartsOwnedStatus();
+      }
+      else Debug.Log("You don't have enough funds");
     }
 
-    public void buyPart (int g, int i,  frame_part frame = null, engine_part engine = null, steeringfin_part steeringfin = null,
-     thruster_part thruster = null, controlsystem_part controlsystem = null, weaponsystem_part weaponsystem = null)
-    {
-      if (frame != null && g >= frame.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
+    private void UpdatePartStatus(part part){
+      switch(part.type){
 
-        // Need to subtract funds and add to owned lists
+        case "Frame":
+          Debug.Log("Part is a Frame");
+          //allParts.frameParts[index].isOwned = true;
+          allPartsOwned.framePartsOwned.Add(part as frame_part);
+          break;
 
-        gSystem.UpdateG(-frame.price);
-        allParts.frameParts[i].isOwned = true;
-        allFramePartsOwned.partsOwned.Add(frame);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
+        case "Engine":
+          //allParts.engineParts[index].isOwned = true;
+          allPartsOwned.enginePartsOwned.Add(part as engine_part);
+          break;
 
+        case "Thruster":
+          //allParts.engineParts[index].isOwned = true;
+          allPartsOwned.thrusterPartsOwned.Add(part as thruster_part);
+          break;
 
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
-      }
-      else if (engine != null && g >= engine.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
+        case "Steering Fin":
+          //allParts.engineParts[index].isOwned = true;
+          allPartsOwned.steeringFinPartsOwned.Add(part as steeringfin_part);
+          break;
 
-        // Need to subtract funds and add to owned lists
+        case "Control System":
+          //allParts.controlSystemParts[index].isOwned = true;
+          allPartsOwned.controlSystemPartsOwned.Add(part as controlsystem_part);
+          break;
 
-        gSystem.UpdateG(-engine.price);
-        allParts.engineParts[i].isOwned = true;
-        allEnginePartsOwned.partsOwned.Add(engine);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
+        case "Weapon System":
+          //allParts.weaponSystemParts[index].isOwned = true;
+          allPartsOwned.weaponSystemPartsOwned.Add(part as weaponsystem_part);
+          break;
 
-
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
-      }
-      else if (steeringfin != null && g >= steeringfin.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
-
-        // Need to subtract funds and add to owned lists
-
-        gSystem.UpdateG(-steeringfin.price);
-        allParts.steeringFinParts[i].isOwned = true;
-        allSteeringFinPartsOwned.partsOwned.Add(steeringfin);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
-
-
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
-      }
-      else if (thruster != null && g >= thruster.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
-
-        // Need to subtract funds and add to owned lists
-
-        gSystem.UpdateG(-thruster.price);
-        allParts.thrusterParts[i].isOwned = true;
-        allThrusterPartsOwned.partsOwned.Add(thruster);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
-
-
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
-      }
-      else if (controlsystem != null && g >= controlsystem.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
-
-        // Need to subtract funds and add to owned lists
-
-        gSystem.UpdateG(-controlsystem.price);
-        allParts.controlSystemParts[i].isOwned = true;
-        allControlSystemPartsOwned.partsOwned.Add(controlsystem);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
-
-
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
-      }
-      else if (weaponsystem != null && g >= weaponsystem.price)
-      {
-        Debug.Log ("You bought the part");
-        resetPanel();
-
-        // Need to subtract funds and add to owned lists
-
-        gSystem.UpdateG(-weaponsystem.price);
-        allParts.weaponSystemParts[i].isOwned = true;
-        allWeaponSystemPartsOwned.partsOwned.Add(weaponsystem);
-        generalUIManager.UpdateGText(gSystem.getG().ToString());
-
-
-        systemManager.Save();
-        SaveSystem.SaveGData(gSystem.getG());
+        default:
+          Debug.Log("No part type was found");
+          break;
       }
     }
 }

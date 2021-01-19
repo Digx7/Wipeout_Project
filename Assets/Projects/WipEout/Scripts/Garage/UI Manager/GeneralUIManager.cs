@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class GeneralUIManager : MonoBehaviour
@@ -15,6 +16,8 @@ public class GeneralUIManager : MonoBehaviour
                                       loadOutPannel,
                                       loadOut_PartsPannel,
                                       loadOut_ColorsPannel,
+                                      store_PartsPannel,
+                                      store_ColorsPannel,
                                       inventoryPannel,
                                       statsReadOutPannel,
                                       launchPannel,
@@ -38,13 +41,16 @@ public class GeneralUIManager : MonoBehaviour
   [SerializeField] private TextMeshProUGUI trackTypeText;
 
   // References
+  [SerializeField] private AllParts allParts;
   [SerializeField] private AllPartsOwned allPartsOwned;
   [SerializeField] private SystemManager systemManager;
   [SerializeField] private overviewManager overviewManager;
+  [SerializeField] private StoreManager storeManager;
   [SerializeField] private GameObject inventory_items_parent;
 
   private Image[] allImages;
   private GameObject[] allPanels;
+  private int UIState;
 
   // Editor Functions ------------------------------------------
 
@@ -115,6 +121,8 @@ public class GeneralUIManager : MonoBehaviour
 
   // Inventory Parts Functions ------------------------------------------
 
+  // Owned
+
   public void OnClickEquipedFramePart (){
     OpenInventory();
     foreach(part part in allPartsOwned.framePartsOwned) {
@@ -163,6 +171,70 @@ public class GeneralUIManager : MonoBehaviour
     }
   }
 
+  // Store
+
+  public void OnClickStoreFramePart (){
+    OpenInventory();
+    foreach(part part in allParts.frameParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreEnginePart (){
+    OpenInventory();
+    foreach(part part in allParts.engineParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreThrusterPart (){
+    OpenInventory();
+    foreach(part part in allParts.thrusterParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreSteeringFinsPart (){
+    OpenInventory();
+    foreach(part part in allParts.steeringFinParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreControlSystemPart (){
+    OpenInventory();
+    foreach(part part in allParts.controlSystemParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreWeaponSystmePart (){
+    OpenInventory();
+    foreach(part part in allParts.weaponSystemParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  // General
+
   private void loadInventory (part part){
     GameObject item = Instantiate(inventoryObjectPrefab, inventory_items_parent.transform);
     inventory_items.Add(item);
@@ -170,7 +242,7 @@ public class GeneralUIManager : MonoBehaviour
     getItemButton(inventory_items.Count - 1).onClick.AddListener(() => OpenParts());
     getItemButton(inventory_items.Count - 1).onClick.AddListener(() => systemManager.Save());
 
-    UpdateItem(inventory_items.Count - 1, part.weight.ToString(), part.powerNeeded.ToString());
+    UpdateItem(inventory_items.Count - 1, part.weight.ToString(), part.powerNeeded.ToString(), part.price.ToString());
   }
 
   private void ClearInventory (){
@@ -178,13 +250,18 @@ public class GeneralUIManager : MonoBehaviour
     inventory_items.Clear();
   }
 
-  private void UpdateItem (int index, string weight, string power){
+  private void UpdateItem (int index, string weight, string power, string price){
     UpdateItemPower(index, power);
     UpdateItemWeight(index, weight);
+    UpdateItemPrice(index, price);
   }
 
   private Button getItemButton (int index){
     return inventory_items[index].GetComponentInChildren<Button>();
+  }
+
+  private void UpdateItemPrice (int index, string value){
+    if(UIState == 3)UpdateItemString(index, "Item Price", value);
   }
 
   private void UpdateItemPower (int index, string value){
@@ -239,6 +316,8 @@ public class GeneralUIManager : MonoBehaviour
   public void OpenInventory (){
     UpdateLoadOutPartsRendering(false);
     UpdateLoadOutColorsRendering(false);
+    UpdateStorePartsRendering(false);
+    UpdateStoreColorsRendering(false);
     UpdateInventoryRendering(true);
   }
 
@@ -247,17 +326,41 @@ public class GeneralUIManager : MonoBehaviour
   }
 
   public void OpenParts (){
-    UpdateLoadOutPartsRendering(true);
-    UpdateLoadOutColorsRendering(false);
-    UpdateInventoryRendering(false);
-    ClearInventory();
+    if(UIState == 3){
+      UpdateLoadOutPartsRendering(false);
+      UpdateLoadOutColorsRendering(false);
+      UpdateStorePartsRendering(true);
+      UpdateStoreColorsRendering(false);
+      UpdateInventoryRendering(false);
+      ClearInventory();
+    }
+    else {
+      UpdateLoadOutPartsRendering(true);
+      UpdateLoadOutColorsRendering(false);
+      UpdateStorePartsRendering(false);
+      UpdateStoreColorsRendering(false);
+      UpdateInventoryRendering(false);
+      ClearInventory();
+    }
   }
 
   public void OpenColors (){
-    UpdateLoadOutPartsRendering(false);
-    UpdateLoadOutColorsRendering(true);
-    UpdateInventoryRendering(false);
-    ClearInventory();
+    if(UIState == 3){
+      UpdateLoadOutPartsRendering(false);
+      UpdateLoadOutColorsRendering(false);
+      UpdateStorePartsRendering(false);
+      UpdateStoreColorsRendering(true);
+      UpdateInventoryRendering(false);
+      ClearInventory();
+    }
+    else {
+      UpdateLoadOutPartsRendering(false);
+      UpdateLoadOutColorsRendering(true);
+      UpdateStorePartsRendering(false);
+      UpdateStoreColorsRendering(false);
+      UpdateInventoryRendering(false);
+      ClearInventory();
+    }
   }
 
   private void ClosePartsAndColors (){
@@ -266,6 +369,8 @@ public class GeneralUIManager : MonoBehaviour
   }
 
   private void UpdateUIState(int input){
+    UIState = input;
+
     switch (input){
       case 1 :
         UpdateGRendering(true);
@@ -372,5 +477,13 @@ public class GeneralUIManager : MonoBehaviour
 
   private void UpdateLoadOutColorsRendering(bool input){
     loadOut_ColorsPannel.SetActive(input);
+  }
+
+  private void UpdateStorePartsRendering(bool input){
+    store_PartsPannel.SetActive(input);
+  }
+
+  private void UpdateStoreColorsRendering(bool input){
+    store_ColorsPannel.SetActive(input);
   }
 }

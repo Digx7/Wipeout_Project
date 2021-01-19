@@ -74,7 +74,6 @@ public class SystemManager : MonoBehaviour
 
       playerSaveData = CreateNewSaveData();
     }
-
   }
 
   public void Delete ()
@@ -83,7 +82,11 @@ public class SystemManager : MonoBehaviour
     SaveSystem.DeleteGData();
   }
 
-  public PlayerSaveData CreateNewSaveData ()
+  public void RefreashPartsOwnedStatus (){
+    RefreashPartsOwnedStatus(playerSaveData);
+  }
+
+  private PlayerSaveData CreateNewSaveData ()
   {
     List<string> loadOuts = new List<string>();
 
@@ -125,7 +128,7 @@ public class SystemManager : MonoBehaviour
     return saveData;
   }
 
-  public PlayerSaveData compileSaveData ()
+  private PlayerSaveData compileSaveData ()
   {
     List<string> loadOuts = new List<string>();
 
@@ -180,7 +183,7 @@ public class SystemManager : MonoBehaviour
     return saveData;
   }
 
-  public void proccessSaveData (PlayerSaveData data)
+  private void proccessSaveData (PlayerSaveData data)
   {
 
     customLoadOut loadOut = new customLoadOut();
@@ -193,6 +196,10 @@ public class SystemManager : MonoBehaviour
 
     allCustomLoadOuts.loadouts.Add(loadOut);
 
+    RefreashPartsOwnedStatus(data);
+  }
+
+  private void RefreashPartsOwnedStatus(PlayerSaveData data){
     foreach (string name in data.ownedFrameParts)
     {
       allPartsOwned.framePartsOwned.Add(findFramePart(name, true));
@@ -219,7 +226,7 @@ public class SystemManager : MonoBehaviour
     }
   }
 
-  public frame_part findFramePart (string name, bool isOwning = false)
+  private frame_part findFramePart (string name, bool isOwning = false)
   {
     foreach (frame_part part in allParts.frameParts)
     {
@@ -233,7 +240,7 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
-  public engine_part findEnginePart (string name, bool isOwning = false)
+  private engine_part findEnginePart (string name, bool isOwning = false)
   {
     foreach (engine_part part in allParts.engineParts)
     {
@@ -247,7 +254,7 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
-  public thruster_part findThrusterPart (string name, bool isOwning = false)
+  private thruster_part findThrusterPart (string name, bool isOwning = false)
   {
     foreach (thruster_part part in allParts.thrusterParts)
     {
@@ -261,7 +268,7 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
-  public steeringfin_part findSteeringFinPart (string name, bool isOwning = false)
+  private steeringfin_part findSteeringFinPart (string name, bool isOwning = false)
   {
     foreach (steeringfin_part part in allParts.steeringFinParts)
     {
@@ -275,7 +282,7 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
-  public controlsystem_part findControlSystemPart (string name, bool isOwning = false)
+  private controlsystem_part findControlSystemPart (string name, bool isOwning = false)
   {
     foreach (controlsystem_part part in allParts.controlSystemParts)
     {
@@ -289,7 +296,7 @@ public class SystemManager : MonoBehaviour
     Debug.LogError("No part with the name " + name + " was found");
     return null;
   }
-  public weaponsystem_part findWeaponSystemPart (string name, bool isOwning = false)
+  private weaponsystem_part findWeaponSystemPart (string name, bool isOwning = false)
   {
     foreach (weaponsystem_part part in allParts.weaponSystemParts)
     {
