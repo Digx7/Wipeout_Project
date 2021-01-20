@@ -36,6 +36,12 @@ public class ShipStatsGenerator : MonoBehaviour
     public GameObject finR;
     public float weightModifier;
 
+    public Color mainColor;
+    public Color secondaryColor;
+    public Color trailColor;
+
+    public float ColorWeights = 1.0f;
+
     public void GenerateStats (customLoadOut loadOut)
     {
         // Stop model loading
@@ -87,6 +93,11 @@ public class ShipStatsGenerator : MonoBehaviour
         acceleration -= weight / weightModifier;
         turningSpeed -= weight / weightModifier;
         airBrakes -= weight / weightModifier;
+
+        // Set up colors
+        mainColor = loadOut.mainColor.color;
+        secondaryColor = loadOut.secondaryColor.color;
+        trailColor = loadOut.trailColor.color;
 
         // Start new model loading
         StartCoroutine("loadShipModel");
@@ -148,6 +159,26 @@ public class ShipStatsGenerator : MonoBehaviour
         }
     }
 
+    public void SetColors (GameObject obj){
+      //Debug.Log(obj.transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].name);
+
+      foreach(Material _material in obj.transform.GetChild(0).GetComponent<MeshRenderer>().materials){
+        if (_material.name == "Primary (Instance)"){
+          _material.color = mainColor;
+
+          Color emissionColor = new Color(mainColor.r*ColorWeights, mainColor.g*ColorWeights, mainColor.b*ColorWeights);
+          _material.SetColor("_EmissionColor", emissionColor);
+        }
+        if (_material.name == "Secondary (Instance)"){
+          _material.color = secondaryColor;
+
+          Color emissionColor = new Color(secondaryColor.r*ColorWeights, secondaryColor.g*ColorWeights, secondaryColor.b*ColorWeights);
+          _material.SetColor("_EmissionColor", emissionColor);
+        }
+        //Debug.Log(_material.name);
+      }
+    }
+
     public IEnumerator loadShipModel()
     {
         Vector3 origin = new Vector3(0, 0, 0);
@@ -156,29 +187,41 @@ public class ShipStatsGenerator : MonoBehaviour
 
         GameObject loadedFrame = Instantiate(frame, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedFrame);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedFrame, "ControlSystem_Point");
         GameObject loadedControlSystem = Instantiate(controlSystem, parent.transform.position, parent.transform.rotation, parent);
+
+        SetColors (loadedControlSystem);
 
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedFrame, "Engine_Point");
         GameObject loadedEngine = Instantiate(engine, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedEngine);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "Thruster_Point");
         GameObject loadedThruster = Instantiate(thruster, parent.transform.position, parent.rotation, parent);
+
+        SetColors (loadedThruster);
 
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "FinL_Point");
         GameObject loadedFinL = Instantiate(finL, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedFinL);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "FinR_Point");
         GameObject loadedFinR = Instantiate(finR, parent.transform.position, parent.rotation, parent);
+
+        SetColors (loadedFinR);
     }
 }

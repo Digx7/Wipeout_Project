@@ -24,6 +24,9 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private List<string> startingSteeringFins;
     [SerializeField] private List<string> startingControlSystems;
     [SerializeField] private List<string> startingWeaponSystems;
+    [SerializeField] private List<string> startingMainColors;
+    [SerializeField] private List<string> startingSecondaryColors;
+    [SerializeField] private List<string> startingTrailColors;
   [Header("Parts Data")]
     [SerializeField] private AllParts allParts;
   [Header("G-System")]
@@ -86,6 +89,10 @@ public class SystemManager : MonoBehaviour
     RefreashPartsOwnedStatus(playerSaveData);
   }
 
+  public void RefreashPartsStatus (){
+    RefreashPartsStatus(playerSaveData);
+  }
+
   private PlayerSaveData CreateNewSaveData ()
   {
     List<string> loadOuts = new List<string>();
@@ -97,12 +104,20 @@ public class SystemManager : MonoBehaviour
     List<string> ownedControlSystemParts = new List<string>();
     List<string> ownedWeaponSystemParts = new List<string>();
 
+    List<string> ownedMainColors = new List<string>();
+    List<string> ownedSecondaryColors = new List<string>();
+    List<string> ownedTrailColors = new List<string>();
+
     foreach(string item in startingFrames) ownedFrameParts.Add(findFramePart(item).Name);
     foreach(string item in startingEngines) ownedEngineParts.Add(findEnginePart(item).Name);
     foreach(string item in startingThrusters) ownedThrusterParts.Add(findThrusterPart(item).Name);
     foreach(string item in startingSteeringFins) ownedSteeringFinParts.Add(findSteeringFinPart(item).Name);
     foreach(string item in startingControlSystems) ownedControlSystemParts.Add(findControlSystemPart(item).Name);
     foreach(string item in startingWeaponSystems) ownedWeaponSystemParts.Add(findWeaponSystemPart(item).Name);
+
+    foreach(string item in startingMainColors) ownedMainColors.Add(findMainColorPart(item).Name);
+    foreach(string item in startingSecondaryColors) ownedSecondaryColors.Add(findSecondaryColorPart(item).Name);
+    foreach(string item in startingTrailColors) ownedTrailColors.Add(findTrailColorPart(item).Name);
 
     /*ownedFrameParts.Add(findFramePart("E-2").Name);
     ownedFrameParts.Add(findFramePart("Fusion").Name);
@@ -119,11 +134,15 @@ public class SystemManager : MonoBehaviour
     loadOuts.Add(findControlSystemPart(startingControlSystems[0]).Name);
     loadOuts.Add(findWeaponSystemPart(startingWeaponSystems[0]).Name);
 
+    loadOuts.Add(findMainColorPart(startingMainColors[0]).Name);
+    loadOuts.Add(findSecondaryColorPart(startingSecondaryColors[0]).Name);
+    loadOuts.Add(findTrailColorPart(startingTrailColors[0]).Name);
+
 
 
     PlayerSaveData saveData = new PlayerSaveData(loadOuts,ownedFrameParts,ownedEngineParts,
         ownedSteeringFinParts,ownedThrusterParts,ownedControlSystemParts,
-        ownedWeaponSystemParts);
+        ownedWeaponSystemParts,ownedMainColors,ownedSecondaryColors,ownedTrailColors);
 
     return saveData;
   }
@@ -139,6 +158,10 @@ public class SystemManager : MonoBehaviour
     List<string> ownedControlSystemParts = new List<string>();
     List<string> ownedWeaponSystemParts = new List<string>();
 
+    List<string> ownedMainColors = new List<string>();
+    List<string> ownedSecondaryColors = new List<string>();
+    List<string> ownedTrailColors = new List<string>();
+
     // copiles loadOuts lists
     foreach (customLoadOut loadOut in allCustomLoadOuts.loadouts)
     {
@@ -148,6 +171,10 @@ public class SystemManager : MonoBehaviour
       loadOuts.Add(loadOut.steeringFinPart.Name);
       loadOuts.Add(loadOut.controlSystemPart.Name);
       loadOuts.Add(loadOut.weaponSystemPart.Name);
+
+      loadOuts.Add(loadOut.mainColor.Name);
+      loadOuts.Add(loadOut.secondaryColor.Name);
+      loadOuts.Add(loadOut.trailColor.Name);
     }
 
     // compiles parts lists
@@ -176,9 +203,22 @@ public class SystemManager : MonoBehaviour
       ownedWeaponSystemParts.Add(part.Name);
     }
 
+    foreach (color_part part in allPartsOwned.mainColorPartsOwned)
+    {
+      ownedMainColors.Add(part.Name);
+    }
+    foreach (color_part part in allPartsOwned.secondaryColorPartsOwned)
+    {
+      ownedSecondaryColors.Add(part.Name);
+    }
+    foreach (color_part part in allPartsOwned.trailColorPartsOwned)
+    {
+      ownedTrailColors.Add(part.Name);
+    }
+
     PlayerSaveData saveData = new PlayerSaveData(loadOuts,ownedFrameParts,ownedEngineParts,
         ownedSteeringFinParts,ownedThrusterParts,ownedControlSystemParts,
-        ownedWeaponSystemParts);
+        ownedWeaponSystemParts,ownedMainColors,ownedSecondaryColors,ownedTrailColors);
 
     return saveData;
   }
@@ -193,6 +233,10 @@ public class SystemManager : MonoBehaviour
     loadOut.steeringFinPart = findSteeringFinPart(data.loadOuts[3]);
     loadOut.controlSystemPart = findControlSystemPart(data.loadOuts[4]);
     loadOut.weaponSystemPart = findWeaponSystemPart(data.loadOuts[5]);
+
+    loadOut.mainColor = findMainColorPart(data.loadOuts[6]);
+    loadOut.secondaryColor = findSecondaryColorPart(data.loadOuts[7]);
+    loadOut.trailColor = findTrailColorPart(data.loadOuts[8]);
 
     allCustomLoadOuts.loadouts.Add(loadOut);
 
@@ -223,6 +267,59 @@ public class SystemManager : MonoBehaviour
     foreach (string name in data.ownedWeaponSystemParts)
     {
       allPartsOwned.weaponSystemPartsOwned.Add(findWeaponSystemPart(name, true));
+    }
+
+    foreach (string name in data.ownedMainColors)
+    {
+      allPartsOwned.mainColorPartsOwned.Add(findMainColorPart(name, true));
+    }
+    foreach (string name in data.ownedSecondaryColors)
+    {
+      allPartsOwned.secondaryColorPartsOwned.Add(findSecondaryColorPart(name, true));
+    }
+    foreach (string name in data.ownedTrailColors)
+    {
+      allPartsOwned.trailColorPartsOwned.Add(findTrailColorPart(name, true));
+    }
+  }
+
+  private void RefreashPartsStatus(PlayerSaveData data){
+    foreach (string name in data.ownedFrameParts)
+    {
+      findFramePart(name, true);
+    }
+    foreach (string name in data.ownedEngineParts)
+    {
+      findEnginePart(name, true);
+    }
+    foreach (string name in data.ownedThrusterParts)
+    {
+      findThrusterPart(name, true);
+    }
+    foreach (string name in data.ownedSteeringFinParts)
+    {
+      findSteeringFinPart(name, true);
+    }
+    foreach (string name in data.ownedControlSystemParts)
+    {
+      findControlSystemPart(name, true);
+    }
+    foreach (string name in data.ownedWeaponSystemParts)
+    {
+      findWeaponSystemPart(name, true);
+    }
+
+    foreach (string name in data.ownedMainColors)
+    {
+      findMainColorPart(name, true);
+    }
+    foreach (string name in data.ownedSecondaryColors)
+    {
+      findSecondaryColorPart(name, true);
+    }
+    foreach (string name in data.ownedTrailColors)
+    {
+      findTrailColorPart(name, true);
     }
   }
 
@@ -299,6 +396,49 @@ public class SystemManager : MonoBehaviour
   private weaponsystem_part findWeaponSystemPart (string name, bool isOwning = false)
   {
     foreach (weaponsystem_part part in allParts.weaponSystemParts)
+    {
+      if (part.Name == name)
+      {
+        if (isOwning) part.isOwned = true;
+        return part;
+      }
+    }
+
+    Debug.LogError("No part with the name " + name + " was found");
+    return null;
+  }
+
+  private color_part findMainColorPart (string name, bool isOwning = false)
+  {
+    foreach (color_part part in allParts.mainColorParts)
+    {
+      if (part.Name == name)
+      {
+        if (isOwning) part.isOwned = true;
+        return part;
+      }
+    }
+
+    Debug.LogError("No part with the name " + name + " was found");
+    return null;
+  }
+  private color_part findSecondaryColorPart (string name, bool isOwning = false)
+  {
+    foreach (color_part part in allParts.secondaryColorParts)
+    {
+      if (part.Name == name)
+      {
+        if (isOwning) part.isOwned = true;
+        return part;
+      }
+    }
+
+    Debug.LogError("No part with the name " + name + " was found");
+    return null;
+  }
+  private color_part findTrailColorPart (string name, bool isOwning = false)
+  {
+    foreach (color_part part in allParts.trailColorParts)
     {
       if (part.Name == name)
       {

@@ -18,6 +18,7 @@ public class overviewManager : MonoBehaviour
     [Space]
     [SerializeField] private ShipStatsGenerator shipStatsGenerator;
     [SerializeField] private GeneralUIManager GeneralUIManager;
+    [SerializeField] private SystemManager systemManager;
 
     public void Initialization ()
     {
@@ -65,7 +66,14 @@ public class overviewManager : MonoBehaviour
         GeneralUIManager.UpdatePart (4, currentLoadOut.controlSystemPart.Name, currentLoadOut.controlSystemPart.weight.ToString(), currentLoadOut.controlSystemPart.powerNeeded.ToString());
         GeneralUIManager.UpdatePart (5, currentLoadOut.weaponSystemPart.Name, currentLoadOut.weaponSystemPart.weight.ToString(), currentLoadOut.weaponSystemPart.powerNeeded.ToString());
 
+        GeneralUIManager.UpdateColor (0, currentLoadOut.mainColor.Name);
+        GeneralUIManager.UpdateColor (1, currentLoadOut.secondaryColor.Name);
+        GeneralUIManager.UpdateColor (2, currentLoadOut.trailColor.Name);
+
         shipStatsGenerator.GenerateStats(currentLoadOut);
+
+        SaveLoadOut();
+        systemManager.Save();
         RefreashAllStatsUI();
     }
     public void RefreashAllStatsUI ()
@@ -86,6 +94,8 @@ public class overviewManager : MonoBehaviour
         GeneralUIManager.UpdateStat(3, "Handling", shipStatsGenerator.getTurningSpeed().ToString());
         GeneralUIManager.UpdateStat(4, "Airbrakes", shipStatsGenerator.getAirBrakes().ToString());
         GeneralUIManager.UpdateStat(5, "Weapon", shipStatsGenerator.getWeapon().ToString());
+
+        //SystemManager.Save();
     }
 
     /*public void RefreashFramePanel ()
@@ -177,6 +187,22 @@ public class overviewManager : MonoBehaviour
     public void NewWeaponSystemPart(weaponsystem_part weaponSystemPart)
     {
         currentLoadOut.weaponSystemPart = weaponSystemPart;
+        RefreashAllPanels();
+    }
+
+    public void NewMainColor(color_part color)
+    {
+        currentLoadOut.mainColor = color;
+        RefreashAllPanels();
+    }
+    public void NewSecondaryColor(color_part color)
+    {
+        currentLoadOut.secondaryColor = color;
+        RefreashAllPanels();
+    }
+    public void NewTrailColor(color_part color)
+    {
+        currentLoadOut.trailColor = color;
         RefreashAllPanels();
     }
 }

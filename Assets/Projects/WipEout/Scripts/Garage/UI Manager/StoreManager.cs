@@ -241,7 +241,7 @@ public class StoreManager : MonoBehaviour
         systemManager.Save();
         SaveSystem.SaveGData(gSystem.getG());
 
-        systemManager.RefreashPartsOwnedStatus();
+        systemManager.RefreashPartsStatus();
       }
       else Debug.Log("You don't have enough funds");
     }
@@ -278,6 +278,13 @@ public class StoreManager : MonoBehaviour
         case "Weapon System":
           //allParts.weaponSystemParts[index].isOwned = true;
           allPartsOwned.weaponSystemPartsOwned.Add(part as weaponsystem_part);
+          break;
+
+        case "Color":
+          color_part color = part as color_part;
+          if(color.subType == "Main Color") allPartsOwned.mainColorPartsOwned.Add(part as color_part);
+          else if(color.subType == "Secondary Color") allPartsOwned.secondaryColorPartsOwned.Add(part as color_part);
+          else if(color.subType == "Trail Color") allPartsOwned.trailColorPartsOwned.Add(part as color_part);
           break;
 
         default:

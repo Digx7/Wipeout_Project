@@ -10,4 +10,8 @@ public class AllParts : MonoBehaviour
     public List<steeringfin_part> steeringFinParts;
     public List<controlsystem_part> controlSystemParts;
     public List<weaponsystem_part> weaponSystemParts;
+
+    public List<color_part> mainColorParts;
+    public List<color_part> secondaryColorParts;
+    public List<color_part> trailColorParts;
 }

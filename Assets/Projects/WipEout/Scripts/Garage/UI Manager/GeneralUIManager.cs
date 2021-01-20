@@ -26,6 +26,7 @@ public class GeneralUIManager : MonoBehaviour
   // loadOutPannel Parts
   [Space]
   [SerializeField] private List<GameObject> loadOutPannelParts,
+                                            loadOutPannelColors,
                                             statsPannelText,
                                             inventory_items;
 
@@ -87,6 +88,10 @@ public class GeneralUIManager : MonoBehaviour
     UpdateStatValue(index, statValue);
   }
 
+  public void UpdateColor (int index, string colorName){
+    UpdateColorString(index, "Part Name", colorName);
+  }
+
   private void UpdatePartName (int index, string name){
     UpdatePartString(index, "Part Name", name);
   }
@@ -113,6 +118,10 @@ public class GeneralUIManager : MonoBehaviour
 
   private void UpdateStatString (int index, string statName, string newText){
     UpdateUIString (statsPannelText, index, statName, newText);
+  }
+
+  private void UpdateColorString(int index, string objectName, string newText){
+    UpdateUIString(loadOutPannelColors, index, objectName, newText);
   }
 
   private void UpdateUIString (List<GameObject> g, int index, string partName, string newText){
@@ -168,6 +177,30 @@ public class GeneralUIManager : MonoBehaviour
     foreach(part part in allPartsOwned.weaponSystemPartsOwned) {
       loadInventory(part);
       getItemButton(inventory_items.Count - 1).onClick.AddListener(() => overviewManager.NewWeaponSystemPart(part as weaponsystem_part));
+    }
+  }
+
+  public void OnClickEquipedMainColor (){
+    OpenInventory();
+    foreach(part part in allPartsOwned.mainColorPartsOwned) {
+      loadInventory(part);
+      getItemButton(inventory_items.Count - 1).onClick.AddListener(() => overviewManager.NewMainColor(part as color_part));
+    }
+  }
+
+  public void OnClickEquipedSecondaryColor (){
+    OpenInventory();
+    foreach(part part in allPartsOwned.secondaryColorPartsOwned) {
+      loadInventory(part);
+      getItemButton(inventory_items.Count - 1).onClick.AddListener(() => overviewManager.NewSecondaryColor(part as color_part));
+    }
+  }
+
+  public void OnClickEquipedTrailColor (){
+    OpenInventory();
+    foreach(part part in allPartsOwned.trailColorPartsOwned) {
+      loadInventory(part);
+      getItemButton(inventory_items.Count - 1).onClick.AddListener(() => overviewManager.NewTrailColor(part as color_part));
     }
   }
 
@@ -233,13 +266,44 @@ public class GeneralUIManager : MonoBehaviour
     }
   }
 
+  public void OnClickStoreMainColor (){
+    OpenInventory();
+    foreach(part part in allParts.mainColorParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreSecondaryColor (){
+    OpenInventory();
+    foreach(part part in allParts.secondaryColorParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
+  public void OnClickStoreTrailColor (){
+    OpenInventory();
+    foreach(part part in allParts.trailColorParts) {
+      if(!part.isOwned) {
+        loadInventory(part);
+        getItemButton(inventory_items.Count - 1).onClick.AddListener(() => storeManager.buyPart(part));
+      }
+    }
+  }
+
   // General
 
   private void loadInventory (part part){
     GameObject item = Instantiate(inventoryObjectPrefab, inventory_items_parent.transform);
     inventory_items.Add(item);
 
-    getItemButton(inventory_items.Count - 1).onClick.AddListener(() => OpenParts());
+    if(part.type == "Color") getItemButton(inventory_items.Count - 1).onClick.AddListener(() => OpenColors());
+    else getItemButton(inventory_items.Count - 1).onClick.AddListener(() => OpenParts());
     getItemButton(inventory_items.Count - 1).onClick.AddListener(() => systemManager.Save());
 
     UpdateItem(inventory_items.Count - 1, part.weight.ToString(), part.powerNeeded.ToString(), part.price.ToString());

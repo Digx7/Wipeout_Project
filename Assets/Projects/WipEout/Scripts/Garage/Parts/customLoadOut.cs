@@ -17,9 +17,9 @@ public class customLoadOut
     public controlsystem_part controlSystemPart;
     public weaponsystem_part weaponSystemPart;
     [Space]
-    public Color mainColor;
-    public Color secondaryColor;
-    public Color trailColor;
+    public color_part mainColor;
+    public color_part secondaryColor;
+    public color_part trailColor;
 
     public customLoadOut ()
     {

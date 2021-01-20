@@ -31,11 +31,12 @@ public class ShipLoader : MonoBehaviour
     [SerializeField] private Color mainColor;
     [SerializeField] private Color secondaryColor;
     [SerializeField] private Color trailColor;
+    [SerializeField] private float ColorWeights = 0.5f;
     [Space]
     [SerializeField] private Canvas HUD;
     [SerializeField] private Canvas spawnedHUD;
     [Space]
-    [SerializeField] private float loadWaitTime = 5.0f;
+    [SerializeField] private float loadWaitTime = 0.5f;
     [Space]
     [SerializeField] private GameObject loadedPreFabBase;
 
@@ -71,6 +72,12 @@ public class ShipLoader : MonoBehaviour
         engine = shipStatsGenerator.engine;
         finL = shipStatsGenerator.finL;
         finR = shipStatsGenerator.finR;
+
+        // Gets ship model colors
+        mainColor = shipStatsGenerator.mainColor;
+        secondaryColor = shipStatsGenerator.secondaryColor;
+        trailColor = shipStatsGenerator.trailColor;
+        ColorWeights = shipStatsGenerator.ColorWeights;
     }
 
     public void setStats ()
@@ -137,6 +144,26 @@ public class ShipLoader : MonoBehaviour
         return null;
     }
 
+    public void SetColors (GameObject obj){
+      //Debug.Log(obj.transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].name);
+
+      foreach(Material _material in obj.transform.GetChild(0).GetComponent<MeshRenderer>().materials){
+        if (_material.name == "Primary (Instance)"){
+          _material.color = mainColor;
+
+          Color emissionColor = new Color(mainColor.r*ColorWeights, mainColor.g*ColorWeights, mainColor.b*ColorWeights);
+          _material.SetColor("_EmissionColor", emissionColor);
+        }
+        if (_material.name == "Secondary (Instance)"){
+          _material.color = secondaryColor;
+
+          Color emissionColor = new Color(secondaryColor.r*ColorWeights, secondaryColor.g*ColorWeights, secondaryColor.b*ColorWeights);
+          _material.SetColor("_EmissionColor", emissionColor);
+        }
+        //Debug.Log(_material.name);
+      }
+    }
+
     public void LoadShipPreFab ()
     {
         StartCoroutine("loadShipPrefab");
@@ -147,12 +174,7 @@ public class ShipLoader : MonoBehaviour
         StartCoroutine("setUpShip");
     }
 
-    /*public void SetColor (GameObject object, Color main, Color secondary)
-    {
-      // find children with renders
-      // find materials with correct name
-      // set colors of found materials to correct color
-    }*/
+
 
     public IEnumerator setUpShip ()
     {
@@ -180,31 +202,42 @@ public class ShipLoader : MonoBehaviour
         parent = FindParent(loadedPreFabBase, "ShipModel");
         GameObject loadedFrame = Instantiate(frame, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedFrame);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedFrame, "ControlSystem_Point");
-        GameObject loadedControlSystem = Instantiate(controlSystem, parent.transform.position, parent.rotation, parent);
+        GameObject loadedControlSystem = Instantiate(controlSystem, parent.transform.position, parent.transform.rotation, parent);
+
+        SetColors (loadedControlSystem);
 
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedFrame, "Engine_Point");
         GameObject loadedEngine = Instantiate(engine, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedEngine);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "Thruster_Point");
         GameObject loadedThruster = Instantiate(thruster, parent.transform.position, parent.rotation, parent);
+
+        SetColors (loadedThruster);
 
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "FinL_Point");
         GameObject loadedFinL = Instantiate(finL, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedFinL);
+
         yield return new WaitForSeconds(loadWaitTime);
 
         parent = FindParent(loadedEngine, "FinR_Point");
         GameObject loadedFinR = Instantiate(finR, parent.transform.position, parent.rotation, parent);
 
+        SetColors (loadedFinR);
         yield return new WaitForSeconds(loadWaitTime);
 
         spawnedHUD = Instantiate(HUD, origin, Quaternion.identity);
