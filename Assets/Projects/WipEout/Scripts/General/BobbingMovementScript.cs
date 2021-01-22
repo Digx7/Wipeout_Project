@@ -45,4 +45,10 @@ public class BobbingMovementScript : MonoBehaviour
       movenmentObject.transform.position -= Vector3.up * speed * Time.deltaTime;
     }
   }
+
+  public void Ranomize(Vector2 speedRange, Vector2 maxHightRange, Vector2 minHightRange){
+    speed = Random.Range(speedRange.x, speedRange.y);
+    maxHight = Random.Range(maxHightRange.x, maxHightRange.y);
+    minHight = Random.Range(minHightRange.x, minHightRange.y);
+  }
 }

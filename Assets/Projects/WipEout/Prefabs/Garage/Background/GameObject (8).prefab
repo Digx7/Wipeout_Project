@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06dec8d1f6f7ce4db3137f9e7970890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimeDelay: 100
+  destroyTimeDelay: 20
   destroyOnImpactWithAnyColliders: 0
   destroyOnImpactWithAnyTriggers: 0
   destroyOnAwake: 1
