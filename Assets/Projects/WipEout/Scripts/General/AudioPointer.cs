@@ -8,6 +8,10 @@ public class AudioPointer : MonoBehaviour
 
     public void Awake(){
 
+      FindAudioManager();
+    }
+
+    private void FindAudioManager () {
       AudioManager[] components = GameObject.FindObjectsOfType<AudioManager>();
       if(components.Length > 1) Debug.Log ("There is more than one audio manager in the scene");
       else if(components.Length < 1) Debug.Log("There are no audio managers in the scene");
@@ -16,5 +20,9 @@ public class AudioPointer : MonoBehaviour
 
     public void PlayAudioWithName(string name){
       if(audioManager != null) audioManager.PlayAudioWithName(name);
+      else {
+        FindAudioManager();
+        if(audioManager != null) audioManager.PlayAudioWithName(name);
+      }
     }
 }
