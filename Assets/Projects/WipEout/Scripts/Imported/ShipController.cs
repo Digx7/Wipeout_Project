@@ -96,7 +96,7 @@ public class ShipController : MonoBehaviour
         shipID = g_manager.RegisterShip(this);
         gravityScalar = g_manager.GetGravity();
 
-
+        DisableInput();
     }
 
     void Update()

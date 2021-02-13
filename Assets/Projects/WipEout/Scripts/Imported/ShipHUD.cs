@@ -98,13 +98,13 @@ public class ShipHUD : MonoBehaviour
 
 
         setUpUI();
-        startTimer();
+        //startTimer();
     }
-	
-	void Update()
+
+	  void Update()
     {
         UpdateHUD();
-	}
+	  }
 
     void UpdateHUD()
     {

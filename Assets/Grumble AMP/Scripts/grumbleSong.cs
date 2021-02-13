@@ -99,7 +99,7 @@ public class grumbleSong : ScriptableObject {
 		}
 		return failure;
 	}
-	
+
 	public AudioClip getLayerAudioClip(int layerNumber) {
 		if (layerNumber < layer.Length && layerNumber >= 0) {
 			return layer[layerNumber];

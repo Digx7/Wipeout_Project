@@ -84,26 +84,26 @@ public class grumbleAMPEditor : Editor {
 		}
 
 		EditorGUILayout.LabelField ("NUMBER OF SONGS: " + gA.songs.Length.ToString ());
-		
+
 		EditorGUILayout.BeginHorizontal();
 		EditorGUILayout.Space();
 		EditorGUILayout.BeginVertical();
-		
+
 		// TO ADD A NEW SONG
 		// Resizes array +1 and adds song to the end of the array.
-		
+
 		if (GUILayout.Button ("ADD SONG",GUILayout.Width(120),GUILayout.Height(30))) {
 			Undo.RecordObject (gA,"Add Song");
 			addSong (gA);
 		}
-		
+
 		// TO REMOVE A SONG
 		// Resizes array -1 and erases the last song
 		if (GUILayout.Button ("REMOVE SONG",GUILayout.Width(120), GUILayout.Height(30))) {
 			Undo.RecordObject (gA,"Remove Song");
 			removeSong (gA);
 		}
-		
+
 		EditorGUILayout.EndVertical();
 		EditorGUILayout.EndHorizontal();
 		// Whitespace
@@ -148,14 +148,14 @@ public class grumbleAMPEditor : Editor {
 	}
 
 
-	
+
 	public static void showSongs (grumbleAMP gA) {
 		EditorGUI.indentLevel += 2;
 
 		if (gA.songs == null) {
 			createFirstBlankGrumbleSong (gA);
 		}
-		
+
 		for (int i=0; i < gA.songs.Length; i++) {
 			// Whitespace
 			EditorGUILayout.LabelField (" ");
@@ -247,17 +247,17 @@ public class grumbleAMPEditor : Editor {
 
 	public static void checkLayerLengths (grumbleAMP gA, int songNumber) {
 		if (gA.songs[songNumber].layer.Length > 0 && gA.songs[songNumber].layer[0] != null) {
-			
+
 			bool sameLength = true;
 			float firstLength = gA.songs[songNumber].layer[0].length;
 			float lengthEpsilon = 0.1f;  // "Epsilon" value.  ;)
-			
+
 			for (int layerNumber=0; layerNumber < gA.songs[songNumber].layer.Length; layerNumber++) {
 				if (gA.songs[songNumber].layer[layerNumber] != null && Mathf.Abs (gA.songs[songNumber].layer[layerNumber].length - firstLength) > lengthEpsilon) {
 					sameLength = false;
 				}
 			}
-			
+
 			if (!sameLength) {
 				EditorGUILayout.LabelField ("WARNING: ALL LAYERS ARE NOT THE SAME LENGTH");
 			}
@@ -274,7 +274,7 @@ public class grumbleAMPEditor : Editor {
 					gA.songs[songNumber].layerResourceNames[j] = newResourceName;
 				}
 			}
-			
+
 			else {
 				AudioClip newAudioClip = (AudioClip)EditorGUILayout.ObjectField(gA.songs[songNumber].layer[j],typeof(AudioClip),false);
 				if (gA.songs[songNumber].layer[j] != newAudioClip) {
@@ -352,11 +352,12 @@ public class grumbleAMPEditor : Editor {
 			Undo.RecordObject (gA.songs[songNumber],"New Layer Crossfade");
 			gA.songs[songNumber].setLayerCrossfadeBy (newLayerCrossfade);
 		}
-		
+
 		bool loopingEnabled = EditorGUILayout.Toggle("Looping Enabled",gA.songs[songNumber].getLoop ());
 		if (gA.songs[songNumber].getLoop () != loopingEnabled) {
 			Undo.RecordObject (gA.songs[songNumber],"Change Song Looping");
 			gA.songs[songNumber].setLoop (loopingEnabled);
 		}
 	}
+	
 }

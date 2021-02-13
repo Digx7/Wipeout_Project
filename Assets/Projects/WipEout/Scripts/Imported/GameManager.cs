@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [Header("Track Settings")]
     [SerializeField] private float gravityScalar = 19.8f;
     [SerializeField] private int maxNumberofLaps = 3;
+    [SerializeField] private float countDownTime = 3.0f;
+    [SerializeField] private bool raceIsActive;
     [Space]
     [SerializeField] private string GarageScene;
 
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Init();
+        StartUpRace();
     }
 
     void Init()
@@ -128,6 +131,11 @@ public class GameManager : MonoBehaviour
         if (GetLaps(shipID) > maxNumberofLaps) ShipFinishedRace(shipID);
     }
 
+    public void StartUpRace()
+    {
+      StartCoroutine(RaceStart(countDownTime));
+    }
+
     public void ShipFinishedRace(int shipID)
     {
         ships[shipID].DisableInput();
@@ -149,6 +157,21 @@ public class GameManager : MonoBehaviour
         yield return null;
 
         Destroy(gameObject, 0.5f);
+    }
+
+    public IEnumerator RaceStart (float countDownTime)
+    {
+      // Start count down animation
+      Debug.Log("Starting Race");
+      raceIsActive = false;
+      yield return new WaitForSeconds(countDownTime);
+      raceIsActive = true;
+      foreach(ShipController ship in ships)
+      {
+        ship.EnableInput();
+        ship.GetComponent<ShipHUD>().startTimer();
+      }
+      yield return null;
     }
 
     public void loadGarageScene(){
