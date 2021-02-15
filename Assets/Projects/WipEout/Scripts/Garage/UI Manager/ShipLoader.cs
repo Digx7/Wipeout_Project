@@ -185,7 +185,6 @@ public class ShipLoader : MonoBehaviour
         setStats();
         yield return null;
         Destroy(gameObject, 0.5f);
-
     }
 
     public IEnumerator loadShipPrefab ()

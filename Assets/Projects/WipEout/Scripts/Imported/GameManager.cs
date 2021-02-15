@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxNumberofLaps = 3;
     [SerializeField] private float countDownTime = 3.0f;
     [SerializeField] private bool raceIsActive;
+    [SerializeField] private bool raceIsLoading;
+    [SerializeField] private UnityEvent CountDownStarted;
+    [SerializeField] private UnityEvent RaceStarted;
     [Space]
     [SerializeField] private string GarageScene;
 
@@ -133,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void StartUpRace()
     {
-      StartCoroutine(RaceStart(countDownTime));
+      StartCoroutine(WaitForRaceToLoad());
     }
 
     public void ShipFinishedRace(int shipID)
@@ -159,18 +163,36 @@ public class GameManager : MonoBehaviour
         Destroy(gameObject, 0.5f);
     }
 
-    public IEnumerator RaceStart (float countDownTime)
+    public IEnumerator RaceCountDown (float countDownTime)
     {
       // Start count down animation
       Debug.Log("Starting Race");
       raceIsActive = false;
+      CountDownStarted.Invoke();
       yield return new WaitForSeconds(countDownTime);
+      RaceStarted.Invoke();
       raceIsActive = true;
       foreach(ShipController ship in ships)
       {
         ship.EnableInput();
         ship.GetComponent<ShipHUD>().startTimer();
       }
+      yield return null;
+    }
+
+    private IEnumerator WaitForRaceToLoad(){
+      raceIsLoading = true;
+
+      ShipLoader[] shipLoaders;
+      do {
+        shipLoaders = FindObjectsOfType<ShipLoader>();
+        yield return null;
+      } while (shipLoaders[0] != null);
+
+      raceIsLoading = false;
+
+      StartCoroutine(RaceCountDown(countDownTime));
+
       yield return null;
     }
 
