@@ -51,9 +51,9 @@ public class ShipLoader : MonoBehaviour
     {
       int sceneIndexToLoad = SceneManager.GetActiveScene().buildIndex + trackNumber;
 
-        GetStats();
-        newScene(sceneIndexToLoad);
-        //StartCoroutine(waitForSceneLoad(SceneManager.GetActiveScene().buildIndex + trackNumber));
+      GetStats();
+      newScene(sceneIndexToLoad);
+      //StartCoroutine(waitForSceneLoad(SceneManager.GetActiveScene().buildIndex + trackNumber));
     }
 
     public void GetStats ()

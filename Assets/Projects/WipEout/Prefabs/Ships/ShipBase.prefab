@@ -68,7 +68,7 @@ MonoBehaviour:
   handling: {fileID: 0}
   shipPrefab: {fileID: 0}
   camBackInit: 6
-  camBackExtra: 0.1
+  camBackExtra: 0.01
   camRight: -1
   camUp: 2.5
   camRotate: 0.6
