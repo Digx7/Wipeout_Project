@@ -5,22 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class Track
 {
-    [SerializeField] private string trackName;
-    [SerializeField] private int trackNumber;
-    [SerializeField] private bool isUnlocked = false;
+    public enum DayNightCycle {morning,afternoon,evening,night};
+    public enum GameMode {timeTrial, Race, Battle}
+    [SerializeField] private string TrackName;
+    [SerializeField] private SceneReference sceneReference;
+    [SerializeField] private bool isMirrored = false;
+    [SerializeField] private DayNightCycle timeOfDay;
+    [SerializeField] private GameMode mode;
 
-    //public Scene _scene;
-
-    Track(){
-      trackNumber = 1;
-    }
-
-    Track(int _number){
-      trackNumber = _number;
-    }
-
-    Track(int _number, bool _isUnlocked){
-      trackNumber = _number;
-      isUnlocked = _isUnlocked;
-    }
+    public SceneReference getSceneReference(){return sceneReference;}
+    public DayNightCycle getTimeOfDay(){return timeOfDay;}
+    public GameMode getMode(){return mode;}
 }

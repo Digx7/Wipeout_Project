@@ -21,6 +21,7 @@ public class GeneralUIManager : MonoBehaviour
                                       inventoryPannel,
                                       statsReadOutPannel,
                                       launchPannel,
+                                      trackSelectionTab,
                                       trackSelectionPannel;
 
   // loadOutPannel Parts
@@ -445,7 +446,8 @@ public class GeneralUIManager : MonoBehaviour
         UpdateInventoryRendering(false);
         UpdateStatsRendering(false);
         UpdateLaunchRendering(true);
-        UpdateTrackSelectionRendering(true);
+        UpdatetrackSelectionTabRendering(true);
+        UpdatetrackSelectionPannelRendering(false);
         OpenParts();
         break;
       case 2 :
@@ -457,7 +459,8 @@ public class GeneralUIManager : MonoBehaviour
         UpdateInventoryRendering(false);
         UpdateStatsRendering(true);
         UpdateLaunchRendering(false);
-        UpdateTrackSelectionRendering(false);
+        UpdatetrackSelectionTabRendering(false);
+        UpdatetrackSelectionPannelRendering(false);
         OpenParts();
         break;
       case 3 :
@@ -469,7 +472,8 @@ public class GeneralUIManager : MonoBehaviour
         UpdateInventoryRendering(false);
         UpdateStatsRendering(true);
         UpdateLaunchRendering(false);
-        UpdateTrackSelectionRendering(false);
+        UpdatetrackSelectionTabRendering(false);
+        UpdatetrackSelectionPannelRendering(false);
         OpenParts();
         break;
       case 4 :
@@ -481,7 +485,8 @@ public class GeneralUIManager : MonoBehaviour
         UpdateInventoryRendering(false);
         UpdateStatsRendering(false);
         UpdateLaunchRendering(false);
-        UpdateTrackSelectionRendering(false);
+        UpdatetrackSelectionTabRendering(false);
+        UpdatetrackSelectionPannelRendering(false);
         break;
       case 5 :
         UpdateGRendering(false);
@@ -492,7 +497,8 @@ public class GeneralUIManager : MonoBehaviour
         UpdateInventoryRendering(false);
         UpdateStatsRendering(false);
         UpdateLaunchRendering(false);
-        UpdateTrackSelectionRendering(false);
+        UpdatetrackSelectionTabRendering(false);
+        UpdatetrackSelectionPannelRendering(true);
         break;
     }
   }
@@ -531,7 +537,11 @@ public class GeneralUIManager : MonoBehaviour
     launchPannel.SetActive(input);
   }
 
-  private void UpdateTrackSelectionRendering(bool input){
+  private void UpdatetrackSelectionTabRendering(bool input){
+    trackSelectionTab.SetActive(input);
+  }
+
+  private void UpdatetrackSelectionPannelRendering(bool input){
     trackSelectionPannel.SetActive(input);
   }
 
