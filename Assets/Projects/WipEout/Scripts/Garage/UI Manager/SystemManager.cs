@@ -32,6 +32,7 @@ public class SystemManager : MonoBehaviour
   [Header("G-System")]
     [SerializeField] private GSystem gSystem;
 
+
   // Setup -----------------------------
 
   public void Start ()
