@@ -49,10 +49,11 @@ public class ShipLoader : MonoBehaviour
 
     public void LoadShip ()
     {
-      int sceneIndexToLoad = SceneManager.GetActiveScene().buildIndex + trackNumber;
+      int currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
+      Track track = SaveSystem.LoadSelectedTrackData();
 
       GetStats();
-      newScene(sceneIndexToLoad);
+      newScene(currentSceneNumber, track);
       //StartCoroutine(waitForSceneLoad(SceneManager.GetActiveScene().buildIndex + trackNumber));
     }
 
@@ -92,27 +93,27 @@ public class ShipLoader : MonoBehaviour
         UnityEngine.Debug.Log("Stats should be set");
     }
 
-    public void newScene(int sceneNumber)
+    public void newScene(int currentSceneNumber, Track track)
     {
-        SceneManager.LoadScene(sceneNumber);
+        SceneManager.LoadScene(track.getSceneReference());
 
         UnityEngine.Debug.Log("Loading next scene");
 
-        if (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        if (SceneManager.GetActiveScene().buildIndex == currentSceneNumber)
         {
-            StartCoroutine("waitForSceneLoad", sceneNumber);
+            StartCoroutine("waitForSceneLoad", currentSceneNumber);
         }
     }
 
     IEnumerator waitForSceneLoad(int sceneNumber)
     {
-        while (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        while (SceneManager.GetActiveScene().buildIndex == sceneNumber)
         {
             yield return null;
         }
 
         // Do anything after proper scene has been loaded
-         if (SceneManager.GetActiveScene().buildIndex == sceneNumber)
+         if (SceneManager.GetActiveScene().buildIndex != sceneNumber)
         {
            StartCoroutine("loadShipPrefab");
 

@@ -6,16 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    /*public AllCustomLoadouts allCustomLoadOuts;
-    [Space]
-    public AllFramePartsOwned allFramePartsOwned;
-    public AllEnginePartsOwned allEnginePartsOwned;
-    public AllSteeringFinPartsOwned allSteeringFinOwned;
-    public AllThrusterPartsOwned allThrusterPartsOwned;
-    public AllControlSystemPartsOwned allControlSystemPartsOwned;
-    public AllWeaponSystemPartsOwned allWeaponSystemPartsOwned;
-    [Space]
-    public PlayerSaveData playerSaveData;*/
+
 
     public static void Initialization (string name)
     {
@@ -93,6 +84,43 @@ public static class SaveSystem
     public static void DeleteGData ()
     {
       string path = Application.persistentDataPath + "/WipeoutClone/GData.save";
+
+      File.Delete(path);
+    }
+
+    public static void SaveSelectedTrackData (Track saveData)
+    {
+      BinaryFormatter formatter = new BinaryFormatter();
+      string path = Application.persistentDataPath + "/WipeoutClone/SelectedTrackData.save";
+      FileStream stream = new FileStream(path, FileMode.Create);
+
+      formatter.Serialize(stream, saveData);
+      stream.Close();
+    }
+
+    public static Track LoadSelectedTrackData ()
+    {
+        string path = Application.persistentDataPath + "/WipeoutClone/SelectedTrackData.save";
+        if(File.Exists(path))
+        {
+          BinaryFormatter formatter = new BinaryFormatter();
+          FileStream stream = new FileStream(path, FileMode.Open);
+
+          Track saveData = (Track)formatter.Deserialize(stream);
+          stream.Close();
+
+          return saveData;
+        }
+        else
+        {
+          Debug.Log ("Save file is not found in " + path);
+          return null;
+        }
+    }
+
+    public static void DeleteSelectedTrackData ()
+    {
+      string path = Application.persistentDataPath + "/WipeoutClone/SelectedTrackData.save";
 
       File.Delete(path);
     }

@@ -12,8 +12,11 @@ public class Track
     [SerializeField] private bool isMirrored = false;
     [SerializeField] private DayNightCycle timeOfDay;
     [SerializeField] private GameMode mode;
+    [SerializeField] private bool isUnlocked = true;
 
+    public string getName(){return TrackName;}
     public SceneReference getSceneReference(){return sceneReference;}
     public DayNightCycle getTimeOfDay(){return timeOfDay;}
     public GameMode getMode(){return mode;}
+    public bool checkIsUnlocked(){return isUnlocked;}
 }

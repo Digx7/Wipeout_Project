@@ -33,6 +33,7 @@ public class GeneralUIManager : MonoBehaviour
 
   // Prefabs
   [SerializeField] private GameObject inventoryObjectPrefab;
+  [SerializeField] private GameObject trackPrefab;
 
   // G System UI
   [Space]
@@ -49,6 +50,8 @@ public class GeneralUIManager : MonoBehaviour
   [SerializeField] private overviewManager overviewManager;
   [SerializeField] private StoreManager storeManager;
   [SerializeField] private GameObject inventory_items_parent;
+  [SerializeField] private GameObject track_parent;
+  [SerializeField] private TrackManager trackManager;
 
   private Image[] allImages;
   private GameObject[] allPanels;
@@ -325,6 +328,10 @@ public class GeneralUIManager : MonoBehaviour
     return inventory_items[index].GetComponentInChildren<Button>();
   }
 
+  private Button getItemButton (GameObject obj){
+    return obj.GetComponentInChildren<Button>();
+  }
+
   private void UpdateItemPrice (int index, string value){
     if(UIState == 3)UpdateItemString(index, "Item Price", value);
   }
@@ -354,6 +361,33 @@ public class GeneralUIManager : MonoBehaviour
 
   public void UpdateTrackTypeText (string trackType){
     trackNameText.text = trackType;
+  }
+
+  public void OnTrackTabClick (){
+    SetToTrackSelection();
+    foreach(Track track in trackManager.tracks) {
+      loadTrackSelectionUI(track);
+    }
+  }
+
+  private void loadTrackSelectionUI (Track track){
+    GameObject trackUI = Instantiate(trackPrefab, track_parent.transform);
+
+    updateTrackSelectionUI(trackUI, track);
+
+    getItemButton(trackUI).onClick.AddListener(() => SetToLauchWindow());
+    getItemButton(trackUI).onClick.AddListener(() => trackManager.UpdateSelectedTrack(track));
+    getItemButton(trackUI).onClick.AddListener(() => clearAllTrackUI());
+    getItemButton(trackUI).onClick.AddListener(() => UpdateTrackNameText(track.getName()));
+
+  }
+
+  private void updateTrackSelectionUI (GameObject trackUI, Track track){
+    trackUI.transform.Find("Track Name").GetComponent<TextMeshProUGUI>().text = track.getName();
+  }
+
+  private void clearAllTrackUI (){
+    foreach(Transform child in track_parent.transform) Destroy(child.gameObject);
   }
 
   // UI States ------------------------------------------
