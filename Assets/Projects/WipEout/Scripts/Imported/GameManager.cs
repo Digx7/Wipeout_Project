@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     public int GetLaps(int shipID)
     {
+        if(checkpointHighest == 0) return 0;
         return (int)Mathf.Floor(shipCheckpoints[shipID] / checkpointHighest) + 1;
     }
 
