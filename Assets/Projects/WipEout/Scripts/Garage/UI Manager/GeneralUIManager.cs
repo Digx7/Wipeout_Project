@@ -379,7 +379,6 @@ public class GeneralUIManager : MonoBehaviour
     getItemButton(trackUI).onClick.AddListener(() => trackManager.UpdateSelectedTrack(track));
     getItemButton(trackUI).onClick.AddListener(() => clearAllTrackUI());
     getItemButton(trackUI).onClick.AddListener(() => UpdateTrackNameText(track.getName()));
-
   }
 
   private void updateTrackSelectionUI (GameObject trackUI, Track track){

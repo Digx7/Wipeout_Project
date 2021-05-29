@@ -40,6 +40,8 @@ public class ShipLoader : MonoBehaviour
     [Space]
     [SerializeField] private GameObject loadedPreFabBase;
 
+    [SerializeField] private TrackManager trackManager;
+
     private IEnumerator setUpPrefab;
 
     public void Awake ()
@@ -50,7 +52,7 @@ public class ShipLoader : MonoBehaviour
     public void LoadShip ()
     {
       int currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
-      Track track = SaveSystem.LoadSelectedTrackData();
+      Track track = trackManager.getSelectedTrack();
 
       GetStats();
       newScene(currentSceneNumber, track);

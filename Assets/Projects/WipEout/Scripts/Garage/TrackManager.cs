@@ -12,14 +12,27 @@ public class TrackManager : MonoBehaviour
     }
 
     public void UpdateSelectedTrack(int index){
-      SaveSystem.SaveSelectedTrackData(tracks[index]);
+      SaveSystem.SaveSelectedTrackData(tracks[index].getName());
     }
 
     public void UpdateSelectedTrack(Track track){
-      SaveSystem.SaveSelectedTrackData(track);
+      SaveSystem.SaveSelectedTrackData(track.getName());
     }
 
     public Track getSelectedTrack(){
-      return SaveSystem.LoadSelectedTrackData();
+      string SelectedTrackName = SaveSystem.LoadSelectedTrackData();
+      return findTrackByName(SelectedTrackName);
+    }
+
+    public string getSelectedTrackName(){
+      string SelectedTrackName = SaveSystem.LoadSelectedTrackData();
+      return SelectedTrackName;
+    }
+
+    private Track findTrackByName(string trackName){
+      foreach(Track track in tracks){
+        if(track.getName() == trackName) return track;
+      }
+      return null;
     }
 }

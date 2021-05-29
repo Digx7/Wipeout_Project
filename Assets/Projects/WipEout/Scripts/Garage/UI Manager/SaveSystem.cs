@@ -88,7 +88,7 @@ public static class SaveSystem
       File.Delete(path);
     }
 
-    public static void SaveSelectedTrackData (Track saveData)
+    public static void SaveSelectedTrackData (string saveData)
     {
       BinaryFormatter formatter = new BinaryFormatter();
       string path = Application.persistentDataPath + "/WipeoutClone/SelectedTrackData.save";
@@ -98,7 +98,7 @@ public static class SaveSystem
       stream.Close();
     }
 
-    public static Track LoadSelectedTrackData ()
+    public static string LoadSelectedTrackData ()
     {
         string path = Application.persistentDataPath + "/WipeoutClone/SelectedTrackData.save";
         if(File.Exists(path))
@@ -106,7 +106,7 @@ public static class SaveSystem
           BinaryFormatter formatter = new BinaryFormatter();
           FileStream stream = new FileStream(path, FileMode.Open);
 
-          Track saveData = (Track)formatter.Deserialize(stream);
+          string saveData = (string)formatter.Deserialize(stream);
           stream.Close();
 
           return saveData;

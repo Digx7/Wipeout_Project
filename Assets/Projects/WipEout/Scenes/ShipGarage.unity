@@ -12285,6 +12285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aeaf1661ec16ce41b78e51d03284cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1150659923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069654909823314479, guid: 780fec1f3e5011a48af7ce0dfed471f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6069654908765762261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1165769143
 GameObject:
   m_ObjectHideFlags: 0
@@ -15558,6 +15564,7 @@ MonoBehaviour:
   spawnedHUD: {fileID: 0}
   loadWaitTime: 0.1
   loadedPreFabBase: {fileID: 0}
+  trackManager: {fileID: 1953284607}
 --- !u!4 &1566310744
 Transform:
   m_ObjectHideFlags: 0
@@ -18949,6 +18956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overviewManager: {fileID: 74977746}
   generalUIManager: {fileID: 1953284604}
+  trackManager: {fileID: 1953284607}
   allCustomLoadOuts: {fileID: 74977745}
   allPartsOwned: {fileID: 74977747}
   playerSaveData:
@@ -22140,6 +22148,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4778981562559533626, guid: 780fec1f3e5011a48af7ce0dfed471f1,
+        type: 3}
+      propertyPath: spawn.parent
+      value: 
+      objectReference: {fileID: 1150659923}
+    - target: {fileID: 6069654908402209891, guid: 780fec1f3e5011a48af7ce0dfed471f1,
+        type: 3}
+      propertyPath: spawn.parent
+      value: 
+      objectReference: {fileID: 1150659923}
     - target: {fileID: 6069654908915011400, guid: 780fec1f3e5011a48af7ce0dfed471f1,
         type: 3}
       propertyPath: m_RootOrder

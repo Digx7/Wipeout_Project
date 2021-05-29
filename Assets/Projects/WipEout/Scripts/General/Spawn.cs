@@ -38,6 +38,9 @@ public class Spawn {
     [Tooltip("Only works if this sensor is in UseCordinates Spawn Mode")]
     public Vector3 spawnLocation;
 
+    [Tooltip("Sets the spawned object's parent, keep empty if you want no parent")]
+    public GameObject parent;
+
     public bool spawnRelitiveToThisGameObject = true;
 
     [Tooltip("X: is the minimum\nY: the maximum")]

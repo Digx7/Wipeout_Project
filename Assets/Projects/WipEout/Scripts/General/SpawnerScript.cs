@@ -36,6 +36,7 @@ public class SpawnerScript : MonoBehaviour {
         float rate;
         Vector3 location;
         Quaternion rotation;
+        GameObject parent;
 
         // will run until has hit max rate
         while (x < spawn.maxSpawn) {
@@ -63,9 +64,11 @@ public class SpawnerScript : MonoBehaviour {
                 location = spawn.spawnLocationGameObject.transform.position;
                 rotation = spawn.spawnLocationGameObject.transform.rotation;
             }
+            parent = spawn.parent;
+
             //EventController.Instance.BroadcastOnBossFire();
             //spawn object
-            GameObject g = Instantiate(spawn.spawnableObject, location, rotation);
+            GameObject g = Instantiate(spawn.spawnableObject, location, rotation, parent.transform);
 
         }
     }

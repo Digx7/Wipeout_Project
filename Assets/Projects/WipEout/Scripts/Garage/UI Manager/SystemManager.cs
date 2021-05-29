@@ -11,6 +11,7 @@ public class SystemManager : MonoBehaviour
   [Header("UI Manager")]
     [SerializeField] private overviewManager overviewManager;
     [SerializeField] private GeneralUIManager generalUIManager;
+    [SerializeField] private TrackManager trackManager;
   [Header("Player Save Data")]
     [SerializeField] private AllCustomLoadouts allCustomLoadOuts;
     [Space]
@@ -27,6 +28,7 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private List<string> startingMainColors;
     [SerializeField] private List<string> startingSecondaryColors;
     [SerializeField] private List<string> startingTrailColors;
+
   [Header("Parts Data")]
     [SerializeField] private AllParts allParts;
   [Header("G-System")]
@@ -45,6 +47,7 @@ public class SystemManager : MonoBehaviour
     Save();
 
     ChangeG(SaveSystem.LoadGData());
+    generalUIManager.UpdateTrackNameText(trackManager.getSelectedTrackName());
   }
 
   public void OnClickQuit(){
